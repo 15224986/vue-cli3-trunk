@@ -99,7 +99,6 @@
                 :total="pagination.total"
                 :layout="$global.paginationLayout"
                 :page-sizes="$global.paginationSizes"
-                hide-on-single-page
                 background
                 @current-change="initTableData()"
                 @size-change="initTableData()"
