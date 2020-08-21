@@ -85,14 +85,5 @@ module.exports = {	// webpack-dev-server 相关配置
 		        })
 		        .end()
 		});
-	},
-	configureWebpack: {	// 引入jquery
-	    plugins: [
-		    new webpack.ProvidePlugin({
-		    	$:"jquery",
-		    	jQuery:"jquery",
-		    	"windows.jQuery":"jquery"
-		    })
-	    ]
-	 }
+	}
 };
