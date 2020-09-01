@@ -97,7 +97,7 @@ const produceData = function (opt) {
     return articles
 }
 let mockData = {
-    'code': 200,
+    'result': 0,
     'originLists|10': [
         {
             'id|+1': 1,
@@ -115,7 +115,7 @@ let mockData = {
     'pagination':{
         'current|+1': 1,
         'size': 20,
-        'pages|1-150': 30
+        'total|1-150': 30
     },
     'table|5-20': [
         {
