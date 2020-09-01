@@ -245,25 +245,12 @@
              * 下拉框 options 的数据
              */
             initOptions(){
-                // 正在加载中
-                this.tableLoading = true;
                 /**
                  * 模拟请求数据
                  */
-                setTimeout(()=>{
-                    this.initTableData();
-                }, 500);
                 this.$http.get(`/mock/tableData`, {}, {baseURL:''}).then( res => {
-                    // console.log( res );
-                    if( res.result == 0 ){
-                        this.$message.success(res.msg);
-                        this.searchOptions = { ...this.options, ...res.options};
-                    }else{
-                        this.$alert( res.msg, '系统提示', {
-                            type: 'error',
-                            callback: action => {}
-                        });
-                    }
+                    this.searchOptions = { ...this.options, ...res.options};
+                    this.initTableData();
                 })
                 .catch( error => {
                     this.$message(error);
@@ -273,25 +260,10 @@
              * 初始化表格数据
              */
             initTableData() {
-                /**
-                 * 模拟请求数据
-                 */
-                setTimeout(()=>{
-                    this.tableLoading = false;
-                }, 1000);
-                // let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination };
-                // this.$http.get(`sys/user/list`, params).then( res => {
-                //     if( res.result == 0 ){
-                //         // console.log( res );
-                //         this.tableLoading = false;
-                //         this.tableData = res.table;
-                //         this.pagination = res.pagination;
-                //     }else{
-                //         this.$alert( res.msg, '系统提示', {
-                //             type: 'error',
-                //             callback: action => {}
-                //         });
-                //     }
+                let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination };
+                // this.$http.get(`/mock/tableData`, params).then( res => {
+                //     this.tableData = res.table;
+                //     this.pagination = res.pagination;
                 // })
                 // .catch( error => {
                 //     this.$message(error);
