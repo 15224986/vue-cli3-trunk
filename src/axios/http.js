@@ -32,7 +32,7 @@ var instance = Axios.create({
 const http = ( params = {} ) => {
     return new Promise((resolve, reject) => {
         instance(params).then(response => {
-                resolve(response.data);
+                resolve(response);
             }).catch(err => {
                 reject(err)
             })
@@ -99,7 +99,7 @@ http.get = (url, params = {}, obj = {} ) => {
     return new Promise((resolve, reject) => {
         obj.params = params;
         instance.get(url, obj ).then(response => {
-                resolve(response.data);
+                resolve(response);
             }).catch(err => {
                 reject(err)
             })
@@ -117,7 +117,7 @@ http.delete = (url, params = {}, obj = {}) => {
     return new Promise((resolve, reject) => {
         obj.params = params;
         instance.delete(url, obj ).then(response => {
-                resolve(response.data);
+                resolve(response);
             }).catch(err => {
                 reject(err)
             })
@@ -136,7 +136,7 @@ http.head = (url, params = {}, obj = {}) => {
     return new Promise((resolve, reject) => {
         obj.params = params;
         instance.head(url, obj).then(response => {
-                resolve(response.data);
+                resolve(response);
             }).catch(err => {
                 reject(err)
             })
@@ -155,7 +155,7 @@ http.head = (url, params = {}, obj = {}) => {
 http.post = (url, data = {}, obj = {}) => {
     return new Promise((resolve, reject) => {
         instance.post(url, data, obj).then(response => {
-                resolve(response.data);
+                resolve(response);
             }, err => {
                 reject(err)
             })
@@ -173,7 +173,7 @@ http.post = (url, data = {}, obj = {}) => {
 http.put = (url, data = {}, obj = {}) => {
     return new Promise((resolve, reject) => {
         instance.put(url, data, obj).then(response => {
-            resolve(response.data);
+            resolve(response);
         }, err => {
             reject(err)
         })
@@ -191,7 +191,7 @@ http.put = (url, data = {}, obj = {}) => {
 http.patch = (url, data = {}, obj = {}) => {
     return new Promise((resolve, reject) => {
         instance.patch(url, data, obj).then(response => {
-            resolve(response.data);
+            resolve(response);
         }, err => {
             reject(err)
         })
@@ -204,7 +204,7 @@ http.patch = (url, data = {}, obj = {}) => {
  */
 // 引入路由
 import router from '@/router';   // vue-router
-
+import { MessageBox } from 'element-ui';
 
 // 引入loading
 import { Loading } from 'element-ui';
@@ -292,7 +292,6 @@ instance.interceptors.request.use((config) => {
 
 // 添加响应拦截器
 instance.interceptors.response.use(response =>{
-
     /**
      * 是否开启了 loading
      * 如果参数中携带了 closeFullScreenLoading = true 则本次加载了loading，
@@ -308,20 +307,24 @@ instance.interceptors.response.use(response =>{
         tryHideFullScreenLoading();
     }
 
-
-
     /**
-     * 根据code跳转到响应页面
+     * 根据result跳转到响应页面
      */
-    if( response.data && response.data.code == 702 ){
+    if( response.data.result == 702 ){
         router.push({ path: "/login" });
-    }else if( response.data && response.data.code == 400 ){
+    }else if( response.data.result == 400 ){
         router.push({ path: "/400" });
+    }else if( response.data.result == -1 ){
+        MessageBox.alert( response.data.msg, '系统提示', {
+            type: 'error',
+            callback: action => {}
+        });
     }
 
-
-    // 对响应数据做点什么
-    return response
+    /**
+     * 返回数据
+     */
+    return response.data;
 }, error =>{
     /**
      * 关闭本次开启的FullScreenLoading()
