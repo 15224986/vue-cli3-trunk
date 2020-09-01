@@ -21,7 +21,7 @@
                         clearable
                     >
                         <el-option
-                            v-for="(item, index) in selectOptions.region"
+                            v-for="(item, index) in options.region"
                             :key="index"
                             :label="item.label"
                             :value="item.value"
@@ -33,7 +33,7 @@
                 <el-form-item label="活动区域">
                     <moc-all-select
                         v-model="search.region2"
-                        :selectOptions="selectOptions.region"
+                        :selectOptions="options.region"
                         filterable
                         clearable
                     >
@@ -96,12 +96,12 @@
             <el-pagination
                 :current-page.sync="pagination.current"
                 :page-size.sync="pagination.size"
+                @current-change="initTableData()"
+                @size-change="initTableData()"
                 :total="pagination.total"
                 :layout="$global.paginationLayout"
                 :page-sizes="$global.paginationSizes"
                 background
-                @current-change="initTableData()"
-                @size-change="initTableData()"
             >
             </el-pagination>
         </moc-section>
@@ -117,8 +117,6 @@
     import tableCommon from '@/mixins/tableCommon.js';
     // 表格数据格式化
     import tableFormatter from '@/mixins/tableFormatter.js';
-
-
     /**
      * 公共数据、方法的几种使用方式
      * 1.公共数据、方法写在mixins文件夹里，以mixin的形式使用
@@ -126,8 +124,6 @@
      * 3.公共方法写在常用的写在'assets/scripts/common.js'里
      * 4.不常用的写在utils里面，按需引入
      */
-
-
     export default {
         mixins:[ common, tableCommon, tableFormatter ],
         components: {},
@@ -168,7 +164,7 @@
                         c:3
                     }
                 },
-                selectOptions:{
+                options:{
                     region:[
                         {
                             label: '黄金糕',
@@ -212,10 +208,10 @@
 			}
         },
         created(){
-            this.initSelectOptions();
+            this.initOptions();
         },
         mounted(){
-            this.calcTableHeight();
+
         },
         methods:{
             testAssignCloneDeep(){
@@ -241,42 +237,37 @@
              * 搜索事件
              */
             onSearch(){
-
                 console.log( this.search.region2 );
-
                 this.pagination.current = 1;
                 this.initTableData();
             },
             /**
              * 下拉框 options 的数据
              */
-            initSelectOptions(){
-
+            initOptions(){
                 // 正在加载中
                 this.tableLoading = true;
-
                 /**
                  * 模拟请求数据
                  */
                 setTimeout(()=>{
                     this.initTableData();
                 }, 500);
-
-                // this.$http.get(`/mock/tableData`, {}, {baseURL:''}).then( res => {
-                //     console.log( res );
-                //     if( res.result == 1 ){
-                //         this.$message.success(res.msg);
-                //         this.searchOptions = { ...this.selectOptions, ...res.options};
-                //     }else{
-                //         this.$alert( res.msg, '系统提示', {
-                //             type: 'error',
-                //             callback: action => {}
-                //         });
-                //     }
-                // })
-                // .catch( error => {
-                //     this.$message(error);
-                // });
+                this.$http.get(`/mock/tableData`, {}, {baseURL:''}).then( res => {
+                    // console.log( res );
+                    if( res.result == 0 ){
+                        this.$message.success(res.msg);
+                        this.searchOptions = { ...this.options, ...res.options};
+                    }else{
+                        this.$alert( res.msg, '系统提示', {
+                            type: 'error',
+                            callback: action => {}
+                        });
+                    }
+                })
+                .catch( error => {
+                    this.$message(error);
+                });
             },
             /**
              * 初始化表格数据
@@ -288,10 +279,9 @@
                 setTimeout(()=>{
                     this.tableLoading = false;
                 }, 1000);
-
                 // let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination };
                 // this.$http.get(`sys/user/list`, params).then( res => {
-                //     if( res.result == 1 ){
+                //     if( res.result == 0 ){
                 //         // console.log( res );
                 //         this.tableLoading = false;
                 //         this.tableData = res.table;
@@ -307,7 +297,6 @@
                 //     this.$message(error);
                 // });
             },
-
         }
     }
 </script>
