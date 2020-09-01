@@ -5,7 +5,7 @@
 	@include displayFlex;
 	@include boxOrient;
 	overflow: auto;
-	background-color: #f2f2f2;
+	background-color: $bgColor;
 	>.moc-section{
 		margin-left: 20px;
 		margin-right: 20px;
