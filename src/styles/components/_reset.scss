@@ -13,7 +13,7 @@ html{
 }
 body{
     font-family: $font-family;
-    color: #717171;
+    color: $textColor;
     font-size: 14px;
 }
 h1, h2, h3, h4, h5, h6{
@@ -65,7 +65,7 @@ legend {
     font-weight: 700;
 }
 a {
-    color: #4183C4;
+    color: $mainColor;
     text-decoration: none;
 }
 a:hover, a:active {
@@ -82,7 +82,7 @@ img{
 }
 select{
     outline:none;
-    border: solid 1px #000;
+    border: solid 1px $borColor;
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
@@ -140,7 +140,7 @@ textarea:-webkit-autofill,
 select:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px rgba(#fff, 1) inset;
     background-color: rgba(#fff, 1);
-    -webkit-text-fill-color: #666666; //设置文字颜色
+    -webkit-text-fill-color: $textColor; //设置文字颜色
 }
 // 去除火狐浏览器的padding值
 input::-moz-focus-inner,
