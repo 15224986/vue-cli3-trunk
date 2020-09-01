@@ -2,7 +2,7 @@
 
 
 .body-bg-default{
-	background-color: #f1f1f1;
+	background-color: $bgColor;
 }
 
 // **************************** page 页面框架 **********************************
@@ -13,7 +13,7 @@ body,
 	height: 100%;
 }
 .moc-page-header{
-	background-color: #00A0E9;
+	background-color: $mainColor;
 }
 .moc-page-nav {
 	line-height: 60px;
