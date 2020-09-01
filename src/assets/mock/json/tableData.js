@@ -97,7 +97,7 @@ const produceData = function (opt) {
     return articles
 }
 let mockData = {
-    'result': 0,
+    'result': -1,
     'originLists|10': [
         {
             'id|+1': 1,
@@ -131,7 +131,7 @@ let mockData = {
         }
     ],
     // 'table': produceData(),
-    'msg': '成功'
+    'msg': '请求失败，数据格式错误！'
 };
 
 export default mockData;
