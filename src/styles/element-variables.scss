@@ -11,7 +11,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 // **************************** el-menu **********************************
 .el-menu,
 .el-aside {
-	color: #333;
+	color: $textColor;
 	border: 0 none;
 }
 .el-main{
@@ -19,8 +19,12 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 }
 
 
-// **************************** element-ui upload **********************************
-
+// **************************** el-table **********************************
+.el-table {
+	th {
+		background-color: #f5f7fa;
+	}
+}
 
 
 
