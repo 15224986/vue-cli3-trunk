@@ -288,35 +288,35 @@ $spacing: (xl 40) (lg 30) (md 20) (sm 10) (xs 5) !default;
     border: 0 none !important;
 }
 .b-1{
-    border: #e5e5e5 1px solid !important;
+    border: $borColor 1px solid !important;
 }
 // border-top
 .b-t-0{
     border-top: 0 none !important;
 }
 .b-t-1{
-    border-top: #e5e5e5 1px solid !important;
+    border-top: $borColor 1px solid !important;
 }
 // border-bottom
 .b-b-0{
     border-bottom: 0 none !important;
 }
 .b-b-1{
-    border-bottom: #e5e5e5 1px solid !important;
+    border-bottom: $borColor 1px solid !important;
 }
 // border-left
 .b-l-0{
     border-left: 0 none !important;
 }
 .b-l-1{
-    border-left: #e5e5e5 1px solid !important;
+    border-left: $borColor 1px solid !important;
 }
 // border-right
 .b-r-0{
     border-right: 0 none !important;
 }
 .b-r-1{
-    border-right: #e5e5e5 1px solid !important;
+    border-right: $borColor 1px solid !important;
 }
 // 结束
 
@@ -375,27 +375,6 @@ $spacing: (xl 40) (lg 30) (md 20) (sm 10) (xs 5) !default;
 }
 .text-right{
     text-align: right !important;
-}
-// 结束
-
-// ***
-// *** 文字大小写 text-transform
-// ***
-/* 所有英文大写 */
-.text-lowercase {
-    text-transform: lowercase;
-}
-/* 所有英文小写 */
-.text-uppercase {
-    text-transform: uppercase;
-}
-/* 首字母大写 */
-.text-capitalize {
-    text-transform: capitalize;
-}
-abbr[data-original-title], abbr[title] {
-    cursor: help;
-    border-bottom:#777 1px dotted;
 }
 // 结束
 
