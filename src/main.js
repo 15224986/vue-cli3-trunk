@@ -34,7 +34,7 @@ Vue.prototype.$axios = instance;
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/styles/element-variables.scss'   // 自定义element-ui主题
 import ElementUI from 'element-ui';
-Vue.use(ElementUI);
+Vue.use(ElementUI, {size: 'small', zIndex: 900});
 
 
 /**
