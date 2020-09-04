@@ -9,7 +9,7 @@
             </el-breadcrumb>
         </moc-section>
         <moc-section class="moc-search">
-            <el-form :model="search" label-width="120px" :inline="true" size="small" label-suffix="：">
+            <el-form :model="search" label-width="120px" :inline="true" label-suffix="：">
                 <el-form-item label="审批人">
                     <el-input v-model="search.user" clearable placeholder="审批人"></el-input>
                 </el-form-item>
