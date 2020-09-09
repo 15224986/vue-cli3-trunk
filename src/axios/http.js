@@ -250,10 +250,44 @@ instance.interceptors.request.use((config) => {
 
     // console.log(config);
 
+    const timestamp = new Date().getTime();
+    const tokenExpire = window.localStorage.getItem("tokenExpire")-0;
+    if( timestamp >= tokenExpire && config.url != '/mock/table' ){
+        return new Promise((resolve, reject) => {
+            //刷新token
+            // http.get( '/mock/table', {}, {baseURL:''}).then( res => {
+            //     window.localStorage.setItem("tokenExpire", '123');
+            //     axiosRequestUse(config)
+            //     resolve(config);
+            // })
+            // .catch( error => {
+            //     reject(error);
+            // });
 
-    // 在发送请求之前转换post传过去时的参数格式
-    // 安装插件 querystring 进行转化
-    // 通过querystring 将json格式的请求数据转换为form-data格式
+            setTimeout(() => {
+              console.log('获取token');
+              resolve(config)
+            }, 3000);
+        });
+    }
+
+    console.log( tokenExpire );
+
+    axiosRequestUse(config)
+
+
+    return config;
+}, error =>{
+    // 对请求错误做些什么
+    return Promise.reject(error)
+});
+function axiosRequestUse(config){
+
+    /**
+     * 在发送请求之前转换post传过去时的参数格式
+     * 安装插件 querystring 进行转化
+     * 通过querystring 将json格式的请求数据转换为form-data格式
+     */
     // if (config.method === 'post' || config.method === 'put' ) {
     //     config.data = Qs.stringify(config.data);
     // }
@@ -261,13 +295,12 @@ instance.interceptors.request.use((config) => {
 
     /**
      * 发送请求携带 token
-     * 判断本地是否存在accessToken，如果存在的话，则每个http header都加上token
+     * 判断本地是否存在token，如果存在的话，则每个http header都加上token
      */
-    // const accessToken = window.localStorage.getItem("accessToken");
-    // if (accessToken) {
-    //     config.headers['token'] = accessToken;
+    // const token = window.localStorage.getItem("token");
+    // if (token) {
+    //     config.headers['token'] = token;
     // }
-
 
     /**
      * 是否开启 loading
@@ -282,13 +315,8 @@ instance.interceptors.request.use((config) => {
     if( !closeFullScreenLoading ){
     	showFullScreenLoading();
     }
+}
 
-
-    return config;
-}, error =>{
-    // 对请求错误做些什么
-    return Promise.reject(error)
-});
 
 // 添加响应拦截器
 instance.interceptors.response.use(response =>{
@@ -320,6 +348,8 @@ instance.interceptors.response.use(response =>{
             callback: action => {}
         });
     }
+
+
 
     /**
      * 返回数据
