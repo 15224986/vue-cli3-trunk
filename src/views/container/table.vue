@@ -249,6 +249,11 @@
                  * 模拟请求数据
                  */
                 this.$http.get(`/mock/tableData`, {}, {baseURL:''}).then( res => {
+
+                    console.log(res)
+
+
+
                     this.searchOptions = { ...this.options, ...res.options};
                     this.initTableData();
                 })
