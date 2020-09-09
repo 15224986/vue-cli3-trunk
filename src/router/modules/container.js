@@ -4,6 +4,14 @@ export default {
     name: 'anextUntil',
 	redirect: '/anextUntil/table',
 	children: [
+        {
+        	path: 'login',
+        	component: () => import(/* webpackChunkName: "charts" */ '@/views/container/login'),
+        	name: 'loginPage',
+        	meta: {
+        		title: '登录页面'
+        	}
+        },
 		{
 			path: 'table',
 			component: () => import(/* webpackChunkName: "charts" */ '@/views/container/table'),
