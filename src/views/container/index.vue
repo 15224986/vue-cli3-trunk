@@ -6,6 +6,9 @@
                 class="el-menu-vertical-demo"
                 router
             >
+                <el-menu-item index="/anextUntil/login">
+                    <span slot="title">登录</span>
+                </el-menu-item>
                 <el-menu-item index="/anextUntil/table">
                     <span slot="title">表格</span>
                 </el-menu-item>
