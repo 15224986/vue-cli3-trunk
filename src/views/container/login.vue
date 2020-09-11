@@ -1,52 +1,61 @@
-const TokenKey = 'Admin-Token'
-const RefreshTokenKey = 'Admin-Token-Refresh'
-const TokenExpire = 'Admin-Token-expire'
+<template>
+    <moc-container>
 
-const SidebarOpened = 'App-sidebar-opened'
+        <moc-section class="moc-form" bodier>
+            <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
+                <el-form-item label="账号">
+                    <el-input v-model="form.user"></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input v-model="form.password"></el-input>
+                </el-form-item>
+            </el-form>
+        </moc-section>
+        <moc-section class="moc-btns">
+            <el-button @click="onSubmit" type="primary">立即创建</el-button>
+            <el-button>取消</el-button>
+        </moc-section>
 
+    </moc-container>
+</template>
+<script>
+    /**
+     * 混入对象
+     */
+    import common from '@/mixins/common.js';            // 通用  每个页面都需要引入
 
-export function setToken(token) {
-    localStorage.setItem(TokenKey, token);
-}
-export function getToken() {
-    return localStorage.getItem(TokenKey)
-}
-export function removeToken() {
-    localStorage.removeItem(TokenKey)
-}
+    export default {
+        mixins:[ common ],
+        components: {},
+        data () {
+			return {
+                /**
+                 * 表单
+                 */
+                form:{
+                    user:'',
+                    password:''
+                }
+			}
+        },
+        created(){
 
+        },
+        mounted(){
 
-export function setRefreshToken(refreshToken) {
-    localStorage.setItem(RefreshTokenKey, refreshToken);
-}
-export function getRefreshToken() {
-    return localStorage.getItem(RefreshTokenKey)
-}
-export function removeRefreshToken() {
-    localStorage.removeItem(RefreshTokenKey)
-}
+        },
+        methods:{
+            onSubmit(){
+                let timestamp = new Date().getTime();
+                let tokenExpire = timestamp;
+                let tokenContent = 3600*1000+'851881';
 
-
-export function setTokenExpire(tokenExpire) {
-    localStorage.setItem(TokenExpire, tokenExpire);
-}
-export function getTokenExpire() {
-    return localStorage.getItem(TokenExpire)
-}
-export function removeTokenExpire() {
-    localStorage.removeItem(TokenExpire)
-}
-
-
-export function setSidebarOpened(sidebarOpened) {
-    localStorage.setItem(SidebarOpened, sidebarOpened);
-}
-export function getSidebarOpened() {
-    if( localStorage.getItem(SidebarOpened) == 'false' ){
-        return false
-    }else if( localStorage.getItem(SidebarOpened) == 'true' ){
-        return true
-    }else{
-        return localStorage.getItem(SidebarOpened)
+                console.log(tokenExpire)
+            }
+        }
     }
-}
+</script>
+<style lang="scss">
+
+
+</style>
