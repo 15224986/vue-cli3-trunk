@@ -208,7 +208,7 @@
 			}
         },
         created(){
-            this.initOptions();
+            // this.initOptions();
         },
         mounted(){
 
