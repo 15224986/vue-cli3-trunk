@@ -21,11 +21,37 @@ body,
 		color: #ffffff;
 	}
 }
-
-
-
-
-
+/**
+ * 左导航
+ */
+#page-sidebar{
+	.el-menu-vertical-demo:not(.el-menu--collapse) {
+		width: 220px;
+	}
+	.neu-menu-tools{
+		height: 40px;
+		position: relative;
+	}
+	.hamburger{
+		display: block;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		right: 17px;
+		top: 5px;
+		cursor: pointer;
+		background-color: #F1F1F1;
+		font-size: 20px;
+		color: $textColor;
+		line-height: 30px;
+		font-weight: 400;
+		text-align: center;
+		&.neu-active {
+			-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+		}
+	}
+}
 
 
 
