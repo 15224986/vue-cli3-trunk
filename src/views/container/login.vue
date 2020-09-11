@@ -50,10 +50,6 @@
                 let tokenExpire = timestamp;
                 let tokenContent = 3600*1000+'851881';
 
-                window.localStorage.setItem("tokenContent", tokenExpire);
-                window.localStorage.setItem("tokenExpire", tokenExpire);
-
-
                 console.log(tokenExpire)
             }
         }
