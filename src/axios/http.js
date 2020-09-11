@@ -250,31 +250,7 @@ instance.interceptors.request.use((config) => {
 
     // console.log(config);
 
-    const timestamp = new Date().getTime();
-    const tokenExpire = window.localStorage.getItem("tokenExpire")-0;
-    if( timestamp >= tokenExpire && config.url != '/mock/table' ){
-        return new Promise((resolve, reject) => {
-            //刷新token
-            // http.get( '/mock/table', {}, {baseURL:''}).then( res => {
-            //     window.localStorage.setItem("tokenExpire", '123');
-            //     axiosRequestUse(config)
-            //     resolve(config);
-            // })
-            // .catch( error => {
-            //     reject(error);
-            // });
-
-            setTimeout(() => {
-              console.log('获取token');
-              resolve(config)
-            }, 3000);
-        });
-    }
-
-    console.log( tokenExpire );
-
     axiosRequestUse(config)
-
 
     return config;
 }, error =>{
