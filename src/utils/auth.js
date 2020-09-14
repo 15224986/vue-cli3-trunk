@@ -42,11 +42,9 @@ export function setSidebarOpened(sidebarOpened) {
     localStorage.setItem(SidebarOpened, sidebarOpened);
 }
 export function getSidebarOpened() {
-    if( localStorage.getItem(SidebarOpened) == 'false' ){
-        return false
-    }else if( localStorage.getItem(SidebarOpened) == 'true' ){
+    if(localStorage.getItem(SidebarOpened) === 'true'){
         return true
     }else{
-        return localStorage.getItem(SidebarOpened)
+        return false
     }
 }
