@@ -43,7 +43,7 @@
         data () {
 			return {
                 sidebar:{
-                    opened: getSidebarOpened() ? getSidebarOpened() : true
+                    opened: getSidebarOpened()
                 }
 			}
         },
@@ -54,11 +54,7 @@
         methods:{
             toggleSideBar() {
                 this.sidebar.opened = !this.sidebar.opened
-                if (this.sidebar.opened) {
-                   setSidebarOpened(true)
-                } else {
-                   setSidebarOpened(false)
-                }
+                setSidebarOpened(this.sidebar.opened)
             }
         }
     }
