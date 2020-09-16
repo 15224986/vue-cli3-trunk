@@ -114,8 +114,8 @@ Vue.prototype.$global = Global
  * 全局指令
  * 案例： home/directiveFilters
  */
-// import dialogDrag from '@/directives/dialogDrag.js'
-// Vue.use(dialogDrag);
+import dialogDrag from '@/directives/dialogDrag.js'
+Vue.use(dialogDrag)
 
 
 /**
