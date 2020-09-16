@@ -1,6 +1,6 @@
 <template>
     <moc-container>
-        <moc-section class="moc-breadcrumb">
+        <moc-section>
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
@@ -8,12 +8,12 @@
                 <el-breadcrumb-item>活动详情</el-breadcrumb-item>
             </el-breadcrumb>
         </moc-section>
-        <moc-section class="moc-search">
-            <el-form :model="search" label-width="120px" :inline="true" label-suffix="：">
-                <el-form-item label="审批人">
+        <moc-section class="project-search">
+            <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
+                <el-form-item label="输入框">
                     <el-input v-model="search.user" clearable placeholder="审批人"></el-input>
                 </el-form-item>
-                <el-form-item label="活动区域">
+                <el-form-item label="单选下拉">
                     <el-select
                         v-model="search.region"
                         placeholder="活动区域"
@@ -30,7 +30,7 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="活动区域">
+                <el-form-item label="多选下拉">
                     <moc-all-select
                         v-model="search.region2"
                         :selectOptions="options.region"
@@ -45,24 +45,10 @@
                         placeholder="任意日期">
                     </el-date-picker>
                 </el-form-item>
-                <el-form-item label="日期时间选择">
-                    <el-date-picker
-                        v-model="search.datetime"
-                        type="datetime"
-                        placeholder="任意时间">
-                    </el-date-picker>
-                    <span class="moc-form-label-static">至</span>
-                    <el-date-picker
-                        v-model="search.datetime"
-                        type="datetime"
-                        placeholder="任意时间">
-                    </el-date-picker>
-                </el-form-item>
                 <el-form-item label="时间段选择">
                     <el-date-picker
                         v-model="search.checkTime"
                         type="datetimerange"
-                        :clearable="false"
                         value-format="yyyyMMddHHmmss"
                         range-separator="至"
                         start-placeholder="开始时间"
@@ -72,13 +58,17 @@
                     >
                     </el-date-picker>
                 </el-form-item>
-                <el-form-item class="moc-search-btns">
+                <el-form-item class="project-search-btns">
                     <el-button type="primary" @click="onSearch()">查询</el-button>
                     <el-button type="primary" @click="testAssignCloneDeep()">测试扩展运算符和复杂数据深层复制</el-button>
+                    <el-button type="primary" @click="dialogShow()">弹出框显示</el-button>
                 </el-form-item>
             </el-form>
         </moc-section>
-        <moc-section class="moc-table" bodier>
+        <moc-section class="project-table-box" bodier>
+            <template #header>
+                <p>class里面的project为项目名称</p>
+            </template>
             <el-table
                 :data="tableData"
                 :height="tableHeight"
@@ -91,8 +81,11 @@
                 <el-table-column prop="name" label="姓名" width="186"></el-table-column>
                 <el-table-column prop="address" label="地址" min-width="256"></el-table-column>
             </el-table>
+            <template #footer>
+                <p style="padding: 6px;">class里面的project为项目名称</p>
+            </template>
         </moc-section>
-        <moc-section class="moc-pagination">
+        <moc-section class="project-pagination">
             <el-pagination
                 :current-page.sync="pagination.current"
                 :page-size.sync="pagination.size"
@@ -105,9 +98,27 @@
             >
             </el-pagination>
         </moc-section>
+
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="88%"
+            v-mocDialogDrag
+            append-to-body
+            @closed="search.obj.b++"
+        >
+            <table-dialog :groupId="search.obj.b" ref="dialogTableTemplate"></table-dialog>
+            <template #footer>
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </template>
+        </el-dialog>
+
     </moc-container>
 </template>
 <script>
+
+    import tableDialog from './table-dialog.vue'
     /**
      * 混入对象
      */
@@ -126,7 +137,9 @@
      */
     export default {
         mixins:[ common, tableCommon, tableFormatter ],
-        components: {},
+        components: {
+            tableDialog
+        },
         data () {
             const item = {
 				date: '20160502000000',
@@ -138,8 +151,8 @@
                  * 搜索条件
                  */
                 search: {
-                    user: '',
-                    region: '',
+                    user: '1',
+                    region: '2',
                     region2: '',
                     date: '',
                     datetime: '',
@@ -158,6 +171,8 @@
                  * 分页器
                  */
                 pagination2: {
+                    user: '',
+                    region: '',
                     oages: undefined,
                     obj:{
                         b:2,
@@ -182,38 +197,33 @@
                         {
                             label: '蚵仔煎',
                             value: '选项4'
-                        },
-                        {
-                            label: '蚵仔煎',
-                            value: '选项5'
-                        },
-                        {
-                            label: '蚵仔煎',
-                            value: '选项6'
-                        },
-                        {
-                            label: '蚵仔煎',
-                            value: '选项7'
-                        },
-                        {
-                            label: '蚵仔煎',
-                            value: '选项8'
-                        },
-                        {
-                            label: '蚵仔煎',
-                            value: '选项9'
                         }
                     ]
-                }
+                },
+
+                /**
+                 * 弹出框
+                 */
+                dialogVisible: false
 			}
         },
         created(){
             // this.initOptions();
         },
-        mounted(){
-
+        mounted () {
+            // 计算高度
+            this.calcTableHeight('project-table-box');
+            window.addEventListener('resize', ()=>{
+                this.calcTableHeight('project-table-box');
+            }, false);
         },
         methods:{
+            dialogShow(){
+                this.dialogVisible = true;
+                if (this.$refs.dialogTableTemplate !== undefined) {     // 如果存在，说明不是第一次执行
+                    this.$refs.dialogTableTemplate.inintData()
+                }
+            },
             testAssignCloneDeep(){
                 /**
                  * 合并参数的时候，如果被合并的对象里面存在arr、obj等，需要使用深层复制，才可以对参数进行修改
@@ -249,11 +259,7 @@
                  * 模拟请求数据
                  */
                 this.$http.get(`/mock/tableData`, {}, {baseURL:''}).then( res => {
-
                     console.log(res)
-
-
-
                     this.searchOptions = { ...this.options, ...res.options};
                     this.initTableData();
                 })
