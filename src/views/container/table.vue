@@ -118,7 +118,6 @@
 </template>
 <script>
 
-    import tableDialog from './table-dialog.vue'
     /**
      * 混入对象
      */
@@ -138,7 +137,7 @@
     export default {
         mixins:[ common, tableCommon, tableFormatter ],
         components: {
-            tableDialog
+            tableDialog:()=>import('./table-dialog.vue')
         },
         data () {
             const item = {
