@@ -9,7 +9,6 @@ export default {
              * 表格相关
 			 */
             tableHeight: 100,           // 表格高度
-            tableMinuend: 0,            // 表格被占用的高度
 			tableIndexWidth: 56,        // 表格序号列的宽度
             /**
              * 分页器
@@ -32,8 +31,11 @@ export default {
 		}
 	},
     mounted () {
-        window.addEventListener('resize', this.calcTableHeight, false);
-        this.calcTableHeight();
+        // 计算高度
+        this.calcTableHeight('project-table');
+        window.addEventListener('resize', ()=>{
+            this.calcTableHeight('project-table');
+        }, false);
     },
     beforeDestroy () {
         window.removeEventListener('resize', this.calcTableHeight, false);
@@ -48,24 +50,33 @@ export default {
         /**
          * 计算表格的高度
          */
-        calcTableHeight(Height, dom){
-            if( Height == 'auto' ){
-                return false;
-            }
+        calcTableHeight(dom){
             /**
              * 预定义变量
              */
-            if( Height && typeof(Height) === 'number' ){
-                this.tableMinuend = Height;
-            }
             let $ = document.querySelector.bind(document);
             /**
              * 初始化设置table的高度
              */
             this.$nextTick( ()=>{
-                let $dom = dom || $('.moc-table');
-                if( $dom ){
-                    this.tableHeight = $dom.offsetHeight - this.tableMinuend;
+                let $dom = $('.project-table'),
+                    $head = $('.project-table>.moc-container-section-header'),
+                    $foot = $('.project-table>.moc-container-section-footer'),
+                    headH = 0,
+                    footH = 0;
+                if(typeof dom === 'string'){
+                    $dom = $('.'+dom)
+                    $head = $('.'+dom+'>.moc-container-section-header')
+                    $foot = $('.'+dom+'>.moc-container-section-footer')
+                }
+                if($head){
+                    headH = $head.offsetHeight
+                }
+                if($foot){
+                    footH = $foot.offsetHeight
+                }
+                if($dom){
+                    this.tableHeight = $dom.offsetHeight - headH - footH;
 
                     // /**
                     //  * 循环检测高度，每隔200毫秒从新获取 $dom 的高度
@@ -75,7 +86,7 @@ export default {
                     // let timesRun = 0,
                     //     runNumber= 200;  // 多少秒之后停止算
                     // let interval = setInterval( ()=>{
-                    //     let containerH = $dom.clientHeight - this.tableMinuend;
+                    //     let containerH = $dom.clientHeight - tableMinuend;
                     //     if( this.tableHeight === containerH ){
                     //         timesRun++;
                     //         if( timesRun > runNumber*5 ){
