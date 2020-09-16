@@ -1,6 +1,14 @@
 <template>
     <section class="moc-container-section" :class="{ 'moc-container-bodier':bodier }">
-        <slot></slot>
+        <div class="moc-container-section-header" v-if="$slots.header">
+            <slot name="header"></slot>
+        </div>
+        <div class="moc-container-section-body">
+            <slot></slot>
+        </div>
+        <div class="moc-container-section-footer" v-if="$slots.footer">
+            <slot name="footer"></slot>
+        </div>
     </section>
 </template>
 
@@ -17,6 +25,8 @@
                 type: Boolean,
                 default: false
             },
-		}
+		},
+        created() {
+        }
 	}
 </script>
