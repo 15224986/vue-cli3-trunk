@@ -1,12 +1,12 @@
 <template>
     <section class="moc-container-section" :class="{ 'moc-container-bodier':bodier }">
-        <div class="moc-container-section-header" v-if="$slots.header">
+        <div class="moc-container-section-header" v-if="$scopedSlots.header">
             <slot name="header"></slot>
         </div>
         <div class="moc-container-section-body">
             <slot></slot>
         </div>
-        <div class="moc-container-section-footer" v-if="$slots.footer">
+        <div class="moc-container-section-footer" v-if="$scopedSlots.footer">
             <slot name="footer"></slot>
         </div>
     </section>
@@ -17,8 +17,7 @@
 		name: 'mocSection',
 		componentName: 'mocSection',
 		data() {
-			return{
-			}
+			return{}
 		},
 	  	props: {
             bodier: {
@@ -27,6 +26,8 @@
             },
 		},
         created() {
+        },
+        mounted() {
         }
 	}
 </script>
