@@ -1,5 +1,5 @@
 <template>
-    <moc-container style="height: 420px;">
+    <moc-container>
         <moc-section class="project-search">
             <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
                 <el-form-item label="审批人">
@@ -186,13 +186,13 @@
 			}
         },
         created(){
-            // this.initOptions();
+            this.inintData();
         },
         mounted () {
             // 计算高度
-            this.calcTableHeight('project-dialog-table');
+            this.calcTableHeight('.project-dialog-table');
             window.addEventListener('resize', ()=>{
-                this.calcTableHeight('project-dialog-table');
+                this.calcTableHeight('.project-dialog-table');
             }, false);
         },
         methods:{
