@@ -65,7 +65,7 @@
                 </el-form-item>
             </el-form>
         </moc-section>
-        <moc-section class="project-table-box" bodier>
+        <moc-section id="project-table-box" bodier>
             <template #header>
                 <p>class里面的project为项目名称</p>
             </template>
@@ -103,8 +103,10 @@
             title="提示"
             :visible.sync="dialogVisible"
             width="88%"
-            v-mocDialogDrag
+            top="50px"
             append-to-body
+            v-mocDialogDrag
+            custom-class="moc-dialog-fixed"
             @closed="search.obj.b++"
         >
             <table-dialog :groupId="search.obj.b" ref="dialogTableTemplate"></table-dialog>
@@ -211,9 +213,9 @@
         },
         mounted () {
             // 计算高度
-            this.calcTableHeight('project-table-box');
+            this.calcTableHeight('#project-table-box');
             window.addEventListener('resize', ()=>{
-                this.calcTableHeight('project-table-box');
+                this.calcTableHeight('#project-table-box');
             }, false);
         },
         methods:{
