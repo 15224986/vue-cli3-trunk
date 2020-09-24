@@ -31,10 +31,12 @@ export default {
 		}
 	},
     mounted () {
-        // 计算高度
-        this.calcTableHeight('project-table');
+        /**
+         * 表格计算高度
+         */
+        this.calcTableHeight('#project-table');
         window.addEventListener('resize', ()=>{
-            this.calcTableHeight('project-table');
+            this.calcTableHeight('#project-table');
         }, false);
     },
     beforeDestroy () {
@@ -59,22 +61,11 @@ export default {
              * 初始化设置table的高度
              */
             this.$nextTick( ()=>{
-                let $dom = $('.project-table'),
-                    $head = $('.project-table>.moc-container-section-header'),
-                    $foot = $('.project-table>.moc-container-section-footer'),
-                    headH = 0,
-                    footH = 0;
-                if(typeof dom === 'string'){
-                    $dom = $('.'+dom)
-                    $head = $('.'+dom+'>.moc-container-section-header')
-                    $foot = $('.'+dom+'>.moc-container-section-footer')
-                }
-                if($head){
-                    headH = $head.offsetHeight
-                }
-                if($foot){
-                    footH = $foot.offsetHeight
-                }
+                let $dom = $(dom),
+                    $head = $(dom + '>.moc-container-section-header'),
+                    $foot = $(dom + '>.moc-container-section-footer'),
+                    headH = $head ? $head.offsetHeight : 0,
+                    footH = $foot ? $foot.offsetHeight : 0;
                 if($dom){
                     this.tableHeight = $dom.offsetHeight - headH - footH;
 
