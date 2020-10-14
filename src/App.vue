@@ -22,7 +22,3 @@
         }
     }
 </script>
-<style lang="scss">
-    // 引入公共的css
-    @import './styles/global.scss';
-</style>
