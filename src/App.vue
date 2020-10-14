@@ -4,21 +4,8 @@
     </div>
 </template>
 <script>
-
-
     // 加载资源
     export default {
-        name: 'App',
-        components: {
-        },
-        created () {
-            
-        },
-        computed:{
-            
-        },
-        methods:{
-            
-        }
+        name: 'App'
     }
 </script>
