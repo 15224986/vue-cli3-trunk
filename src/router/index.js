@@ -39,7 +39,6 @@ const router = new Router({
  * vue使用nprogress页面加载进度条
  */
 import NProgress from 'nprogress' 		// progress bar
-import 'nprogress/nprogress.css' 		// progress bar style
 NProgress.configure({
 	easing: 'ease',  					// 动画方式
 	speed: 500,  						// 递增进度条的速度
@@ -64,7 +63,7 @@ router.beforeEach((to, from, next) => {
 	}else{
 		document.title = '智能管理平台';
     }
-    
+
     next();
 });
 
