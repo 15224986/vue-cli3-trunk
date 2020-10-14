@@ -18,18 +18,11 @@
 // **************************** form 表单 **********************************
 @import 'components/form';
 
+// **************************** dialog 弹框 **********************************
+@import 'components/dialog';
 
-.is-fullscreen,
-.moc-dialog-fixed{
-	height: calc(100% - 100px);
-	@include displayFlex;
-	@include boxOrient;
-	.el-dialog__body{
-		overflow: hidden;
-		@include displayFlexNumber;
-	}
-}
-
+// **************************** nprogress 页面顶部进度条 **********************************
+@import 'components/nprogress';
 
 
 
