@@ -1,0 +1,41 @@
+@charset "utf-8";
+/**
+ * 
+ *
+ * 弹框样式
+ * 
+ * 
+ */
+.is-fullscreen,
+.moc-dialog-fixed{
+	height: calc(100% - 100px);
+	@include displayFlex;
+	@include boxOrient;
+	.el-dialog__body{
+		overflow: hidden;
+		@include displayFlexNumber;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

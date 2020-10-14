@@ -1,0 +1,44 @@
+@charset "utf-8";
+/**
+ * 
+ *
+ * 弹框样式
+ * 
+ * 
+ */
+#nprogress{
+	$nprogressColor: #F00 !default;
+	.bar {
+		background: $nprogressColor;
+	}
+	.peg {
+		box-shadow: 0 0 10px $nprogressColor, 0 0 5px $nprogressColor;
+	}
+	.spinner-icon {
+		border-top-color: $nprogressColor;
+		border-left-color: $nprogressColor;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
