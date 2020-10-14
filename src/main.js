@@ -13,6 +13,14 @@ Vue.config.productionTip = false;
  */
 // Vue.config.devtools = false;
 
+/**
+ * 引入各种全局组件的样式
+ */
+import 'element-ui/lib/theme-chalk/index.css'   // element-ui
+import '@/styles/element-variables.scss'        // 自定义element-ui主题
+import 'nprogress/nprogress.css'                // nprogress（页面顶部进度条）
+import '@/styles/global.scss';
+
 
 /**
  * 引入mock数据，关闭则注释该行
@@ -31,8 +39,6 @@ Vue.prototype.$axios = instance;
 /**
  * 完整引入 引入ui模板 element-ui
  */
-import 'element-ui/lib/theme-chalk/index.css';
-import '@/styles/element-variables.scss'   // 自定义element-ui主题
 import ElementUI from 'element-ui';
 Vue.use(ElementUI, {size: 'small', zIndex: 900});
 
