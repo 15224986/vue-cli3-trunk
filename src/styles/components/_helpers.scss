@@ -1,12 +1,10 @@
 @charset "utf-8";
 
 /***************************** 浮动 and 显示隐藏 ***********************************/
-.pull-left,
-.fl-l {
+.pull-left{
     float: left !important;
 }
-.pull-right,
-.fl-r {
+.pull-right {
     float: right !important;
 }
 .pull-none{
@@ -118,7 +116,7 @@
 // 结束
 
 
-/***************************** Paddings ***********************************/
+/***************************** Paddings Margins ***********************************/
 $spacing: (xl 40) (lg 30) (md 20) (sm 10) (xs 5) !default;
 // padding
 @each $padding in $spacing{
@@ -139,141 +137,26 @@ $spacing: (xl 40) (lg 30) (md 20) (sm 10) (xs 5) !default;
     .p-b-#{$class}{
         padding-bottom: #{$val}px !important;
     }
-}
-@for $i from 0 through 8 {
-    @if $i % 2 == 0 {
-        .p-#{$i} {
-            padding: #{$i}px !important;
-        }
-        // padding-top
-        .p-t-#{$i} {
-            padding-top: #{$i}px !important;
-        }
-        // padding-bottom
-        .p-b-#{$i} {
-            padding-bottom: #{$i}px !important;
-        }
-        // padding-left
-        .p-l-#{$i} {
-            padding-left: #{$i}px !important;
-        }
-        // padding-right
-        .p-r-#{$i} {
-            padding-right: #{$i}px !important;
-        }
-    }
-}
-@for $i from 1 through 5 {
-    .p-#{$i*10} {
-        padding: #{$i*10}px !important;
-    }
-    // padding-top
-    .p-t-#{$i*10} {
-        padding-top: #{$i*10}px !important;
-    }
-    // padding-bottom
-    .p-b-#{$i*10} {
-        padding-bottom: #{$i*10}px !important;
-    }
-    // padding-left
-    .p-l-#{$i*10} {
-        padding-left: #{$i*10}px !important;
-    }
-    // padding-right
-    .p-r-#{$i*10} {
-        padding-right: #{$i*10}px !important;
-    }
-    // padding-top-bottom
-    .p-l-r-#{$i*10}{
-        padding-left: #{$i*10}px !important;
-        padding-right: #{$i*10}px !important;
-    }
-    // padding-top-bottom
-    .p-t-b-#{$i*10}{
-        padding-top: #{$i*10}px !important;
-        padding-bottom: #{$i*10}px !important;
-    }
+	// margin
+	.m-#{$class}{
+	    margin: #{$val}px !important;
+	}
+	.m-l-#{$class}{
+	    margin-left:  #{$val}px !important;
+	}
+	.m-r-#{$class}{
+	    margin: #{$val}px !important;
+	}
+	.m-t-#{$class}{
+	    margin-top: #{$val}px !important;
+	}
+	.m-b-#{$class}{
+	    margin-bottom: #{$val}px !important;
+	}
 }
 // padding-auto
 .p-auto{
     padding: auto !important;
-}
-// 结束
-
-/***************************** Margins ***********************************/
-// margin
-@each $margin in $spacing{
-    $class: nth($margin,1);
-    $val: nth($margin,2);
-    .m-#{$class}{
-        margin: #{$val}px !important;
-    }
-    .m-l-#{$class}{
-        margin-left:  #{$val}px !important;
-    }
-    .m-r-#{$class}{
-        margin: #{$val}px !important;
-    }
-    .m-t-#{$class}{
-        margin-top: #{$val}px !important;
-    }
-    .m-b-#{$class}{
-        margin-bottom: #{$val}px !important;
-    }
-}
-@for $i from 0 through 8 {
-    @if $i % 2 == 0 {
-        .m-#{$i} {
-            margin: #{$i}px !important;
-        }
-        // margin-top
-        .m-t-#{$i} {
-            margin-top: #{$i}px !important;
-        }
-        // margin-bottom
-        .m-b-#{$i} {
-            margin-bottom: #{$i}px !important;
-        }
-        // margin-left
-        .m-l-#{$i} {
-            margin-left: #{$i}px !important;
-        }
-        // margin-right
-        .m-r-#{$i} {
-            margin-right: #{$i}px !important;
-        }
-    }
-}
-@for $i from 1 through 5 {
-   .m-#{$i*10} {
-        margin: #{$i*10}px !important;
-    }
-    // margin-top
-    .m-t-#{$i*10} {
-        margin-top: #{$i*10}px !important;
-    }
-    // margin-bottom
-    .m-b-#{$i*10} {
-        margin-bottom: #{$i*10}px !important;
-    }
-    // margin-left
-    .m-l-#{$i*10} {
-        margin-left: #{$i*10}px !important;
-    }
-    // margin-right
-    .m-r-#{$i*10} {
-        margin-right: #{$i*10}px !important;
-    }
-    // margin-left-right
-    .m-l-r-#{$i*10}{
-        margin-left: #{$i*10}px !important;
-        margin-right: #{$i*10}px !important;
-    }
-    // margin-top-bottom
-    .m-t-b-#{$i*10}{
-        margin-top: #{$i*10}px !important;
-        margin-bottom: #{$i*10}px !important;
-    }
 }
 // margin-auto
 .m-auto{
