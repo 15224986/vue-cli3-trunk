@@ -59,9 +59,10 @@
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item class="project-search-btns">
-                    <el-button type="primary" @click="onSearch()">查询</el-button>
-                    <el-button type="primary" @click="testAssignCloneDeep()">测试扩展运算符和复杂数据深层复制</el-button>
-                    <el-button type="primary" @click="dialogShow()">弹出框显示</el-button>
+                    <el-button @click="onSearch()" type="primary">查询</el-button>
+                    <el-button @click="testAssignCloneDeep()" type="primary">测试扩展运算符和复杂数据深层复制</el-button>
+                    <el-button @click="dialogShow()" type="primary">弹出框显示</el-button>
+                    <table-column-config v-model="tableColumnConfigShow" :table-column-all="tableColumnAll" :page-type="tableColumnConfigType"></table-column-config>
                 </el-form-item>
             </el-form>
         </moc-section>
@@ -77,9 +78,9 @@
                 stripe
             >
                 <el-table-column label="序号" type="index" :index="handleIndex" :width="tableIndexWidth" align="center" class-name="neu-table-index"></el-table-column>
-                <el-table-column prop="date" label="日期" width="218" :formatter="dateFormatter"></el-table-column>
-                <el-table-column prop="name" label="姓名" width="186"></el-table-column>
-                <el-table-column prop="address" label="地址" min-width="256"></el-table-column>
+                <el-table-column label="日期" prop="date" v-if="setTableColumn('date')" width="218" :formatter="dateFormatter"></el-table-column>
+                <el-table-column label="姓名" prop="name" v-if="setTableColumn('name')" width="186"></el-table-column>
+                <el-table-column label="地址" prop="address" v-if="setTableColumn('address')" min-width="256"></el-table-column>
             </el-table>
             <template #footer>
                 <p style="padding: 6px;">class里面的project为项目名称</p>
@@ -129,6 +130,9 @@
     import tableCommon from '@/mixins/tableCommon.js';
     // 表格数据格式化
     import tableFormatter from '@/mixins/tableFormatter.js';
+    // 表格配置列显示
+    import tableColumnConfig from '@/mixins/tableColumnConfig.js';
+
     /**
      * 公共数据、方法的几种使用方式
      * 1.公共数据、方法写在mixins文件夹里，以mixin的形式使用
@@ -137,7 +141,7 @@
      * 4.不常用的写在utils里面，按需引入
      */
     export default {
-        mixins:[ common, tableCommon, tableFormatter ],
+        mixins:[ common, tableCommon, tableFormatter, tableColumnConfig ],
         components: {
             tableDialog:()=>import('./table-dialog.vue')
         },
@@ -205,7 +209,26 @@
                 /**
                  * 弹出框
                  */
-                dialogVisible: false
+                dialogVisible: false,
+                /**
+                 * 配置表格展示的列
+                 */
+                tableColumnConfigType: 11,
+                tableColumnAll:[
+                    {
+                        label: "日期",
+                        key: "date"
+                    },
+                    {
+                        label: "姓名",
+                        key: "name"
+                    },
+                    {
+                        label: "地址",
+                        key: "address",
+                        disabled: true
+                    }
+                ]
 			}
         },
         created(){
