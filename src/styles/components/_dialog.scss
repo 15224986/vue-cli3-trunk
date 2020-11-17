@@ -1,5 +1,14 @@
 @charset "utf-8";
 /**
+ * 可以拖动时
+ * header 栏里面的文字不可以选中
+ */
+.moc-drag-dialog{
+	.el-dialog__header{
+		user-select: none;
+	}
+}
+/**
  * 
  *
  * 弹框样式
