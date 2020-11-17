@@ -1,6 +1,6 @@
-import mocContainerSection from './src/container-section';
+import mocComponent from './src/main.vue';
 /* istanbul ignore next */
-mocContainerSection.install = function(Vue) {
-	Vue.component(mocContainerSection.componentName, mocContainerSection);
+mocComponent.install = function(Vue) {
+	Vue.component(mocComponent.componentName, mocComponent);
 };
-export default mocContainerSection;
+export default mocComponent;
