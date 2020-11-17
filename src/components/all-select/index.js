@@ -1,6 +1,6 @@
-import mocAllSelect from './src/all-select';
+import mocComponent from './src/main.vue';
 /* istanbul ignore next */
-mocAllSelect.install = function(Vue) {
-	Vue.component(mocAllSelect.componentName, mocAllSelect);
+mocComponent.install = function(Vue) {
+	Vue.component(mocComponent.componentName, mocComponent);
 };
-export default mocAllSelect;
+export default mocComponent;
