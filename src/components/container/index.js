@@ -1,6 +1,6 @@
-import mocContainer from './src/container';
+import mocComponent from './src/main.vue';
 /* istanbul ignore next */
-mocContainer.install = function(Vue) {
-	Vue.component(mocContainer.componentName, mocContainer);
+mocComponent.install = function(Vue) {
+	Vue.component(mocComponent.componentName, mocComponent);
 };
-export default mocContainer;
+export default mocComponent;
