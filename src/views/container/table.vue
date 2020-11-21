@@ -80,6 +80,8 @@
                 <el-table-column label="序号" type="index" :index="handleIndex" :width="tableIndexWidth" align="center" class-name="neu-table-index"></el-table-column>
                 <el-table-column label="日期" prop="date" v-if="setTableColumn('date')" width="218" :formatter="dateFormatter"></el-table-column>
                 <el-table-column label="姓名" prop="name" v-if="setTableColumn('name')" width="186"></el-table-column>
+                <el-table-column label="性别" prop="sex" v-if="setTableColumn('sex')" width="112"></el-table-column>
+                <el-table-column label="年龄" prop="age" v-if="setTableColumn('age')" width="112"></el-table-column>
                 <el-table-column label="地址" prop="address" v-if="setTableColumn('address')" min-width="256"></el-table-column>
             </el-table>
             <template #footer>
@@ -133,6 +135,11 @@
     // 表格配置列显示
     import tableColumnConfig from '@/mixins/tableColumnConfig.js';
 
+    import {
+        getTableData,
+        getTable
+    } from '@/api/container/table'
+
     /**
      * 公共数据、方法的几种使用方式
      * 1.公共数据、方法写在mixins文件夹里，以mixin的形式使用
@@ -149,6 +156,8 @@
             const item = {
 				date: '20160502000000',
 				name: '王小虎',
+				age: 31,
+				sex: '男',
 				address: '上海市普陀区金沙江路 1518 弄'
 			};
 			return {
@@ -224,6 +233,14 @@
                         key: "name"
                     },
                     {
+                        label: "性别",
+                        key: "sex"
+                    },
+                    {
+                        label: "年龄",
+                        key: "age"
+                    },
+                    {
                         label: "地址",
                         key: "address",
                         disabled: true
@@ -232,7 +249,7 @@
 			}
         },
         created(){
-            // this.initOptions();
+            this.initOptions();
         },
         mounted () {
             // 计算高度
@@ -282,14 +299,26 @@
                 /**
                  * 模拟请求数据
                  */
-                this.$http.get(`/mock/tableData`, {}, {baseURL:''}).then( res => {
-                    console.log(res)
-                    this.searchOptions = { ...this.options, ...res.options};
-                    this.initTableData();
-                })
-                .catch( error => {
-                    this.$message(error);
+                // this.$http.post(`/mock/tableData`, {'api':123}, {baseURL:''}).then( res => {
+                //     console.log(res)
+                // })
+                // .catch( error => {
+                //     this.$message(error);
+                // });
+                // this.$http.get(`/mock/table?api=123`, {}, {baseURL:''}).then( res => {
+                //     console.log(res)
+                // })
+                // .catch( error => {
+                //     this.$message(error);
+                // });
+
+                getTableData().then( response => {
+                    console.log(response)
+                    getTable({'api':123}).then( response => {
+                        console.log(response)
+                    });
                 });
+
             },
             /**
              * 初始化表格数据
