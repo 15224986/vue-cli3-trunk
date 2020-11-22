@@ -3,9 +3,26 @@
 .moc-container{
 	height: 100%;
 	@include displayFlex;
-	@include boxOrient;
-	overflow: auto;
 	background-color: $bgColor;
+	position: relative;
+	&:not(.moc-horizontal){
+		@include boxOrient;
+	}
+	>.moc-container-inner{
+		@include square(100%);
+		position: absolute;
+		left: 0;
+		top: 0;
+		overflow: auto;
+	}
+	&.moc-horizontal{		
+		>.moc-container-section{
+			>.moc-container-section-inner>.moc-container-section-body,
+			>.moc-container-section-body{
+				height: 100%;
+			}
+		}
+	}	
 	>.moc-section{
 		margin-left: 20px;
 		margin-right: 20px;
@@ -21,7 +38,13 @@
 	&.moc-container-bodier{
 		position: relative;
 		@include displayFlexNumber;
-		overflow: auto;
+		>.moc-container-section-inner{
+			@include square(100%);
+			position: absolute;
+			left: 0;
+			top: 0;
+			overflow: auto;
+		}
 	}
 }
 
