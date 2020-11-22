@@ -1,21 +1,27 @@
 <template>
-    <moc-container>
-
-        <moc-section class="moc-form" bodier>
-            <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
-                <el-form-item label="账号">
-                    <el-input v-model="form.user"></el-input>
-                </el-form-item>
-                <el-form-item label="密码">
-                    <el-input v-model="form.password"></el-input>
-                </el-form-item>
-            </el-form>
-        </moc-section>
+    <moc-container horizontal>
         <moc-section class="moc-btns">
             <el-button @click="onSubmit" type="primary">立即创建</el-button>
             <el-button>取消</el-button>
         </moc-section>
-
+        <moc-section class="moc-form" bodier>
+            <moc-container>
+                <moc-section class="moc-form" bodier>
+                    <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
+                        <el-form-item label="账号">
+                            <el-input v-model="form.user"></el-input>
+                        </el-form-item>
+                        <el-form-item label="密码">
+                            <el-input v-model="form.password"></el-input>
+                        </el-form-item>
+                    </el-form>
+                </moc-section>
+                <moc-section class="moc-btns">
+                    <el-button @click="onSubmit" type="primary">立即创建</el-button>
+                    <el-button>取消</el-button>
+                </moc-section>
+            </moc-container>
+        </moc-section>
     </moc-container>
 </template>
 <script>
