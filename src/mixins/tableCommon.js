@@ -52,7 +52,7 @@ export default {
         /**
          * 计算表格的高度
          */
-        calcTableHeight(dom){
+        calcTableHeight(dom, minuend = 0){
             /**
              * 预定义变量
              */
@@ -62,12 +62,12 @@ export default {
              */
             this.$nextTick( ()=>{
                 let $dom = $(dom),
-                    $head = $(dom + '>.moc-container-section-header'),
-                    $foot = $(dom + '>.moc-container-section-footer'),
+                    $head = $(dom + ' .moc-container-section-header'),
+                    $foot = $(dom + ' .moc-container-section-footer'),
                     headH = $head ? $head.offsetHeight : 0,
                     footH = $foot ? $foot.offsetHeight : 0;
                 if($dom){
-                    this.tableHeight = $dom.offsetHeight - headH - footH;
+                    this.tableHeight = $dom.offsetHeight - headH - footH - minuend;
 
                     // /**
                     //  * 循环检测高度，每隔200毫秒从新获取 $dom 的高度
