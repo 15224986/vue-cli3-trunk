@@ -1,9 +1,8 @@
 <template>
 	<section class="moc-container" :class="{'moc-horizontal': horizontal}">
-        <div v-if="inner" class="moc-container-inner">
+        <div class="moc-container-inner" :class="{'moc-is-scroll': isScroll}">
             <slot></slot>
         </div>
-        <slot v-else></slot>
     </section>
 </template>
 
@@ -12,7 +11,7 @@
 		name: 'mocContainer',
 		componentName: 'mocContainer',
         props: {
-            inner: {
+            isScroll: {
                 type: Boolean,
                 default: false
             },
