@@ -1,8 +1,6 @@
 <template>
-	<section class="moc-container" :class="{'moc-horizontal': horizontal}">
-        <div class="moc-container-inner" :class="{'moc-is-scroll': isScroll}">
-            <slot></slot>
-        </div>
+	<section class="moc-container" :class="{'moc-horizontal': horizontal, 'moc-display-flex': displayFlex}">
+        <slot></slot>
     </section>
 </template>
 
@@ -11,14 +9,18 @@
 		name: 'mocContainer',
 		componentName: 'mocContainer',
         props: {
-            isScroll: {
+            displayFlex: {
                 type: Boolean,
-                default: false
+                default: true
             },
             horizontal: {
                 type: Boolean,
                 default: false
             },
+            inner: {
+                type: Boolean,
+                default: false
+            }
         },
 		data() {
 			return{
