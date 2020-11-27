@@ -17,9 +17,10 @@
 	}
 	&.moc-horizontal{		
 		>.moc-container-section{
-			>.moc-container-section-inner>.moc-container-section-body,
-			>.moc-container-section-body{
-				height: 100%;
+			>.moc-container-section-inner{
+				>.moc-container-section-body{
+					height: 100%;
+				}
 			}
 		}
 	}	
@@ -43,11 +44,12 @@
 			position: absolute;
 			left: 0;
 			top: 0;
-			overflow: auto;
 		}
 	}
 }
-
+.moc-is-scroll{
+	overflow: auto;
+}
 
 
 
