@@ -82,6 +82,7 @@
                 <el-table-column label="姓名" prop="name" v-if="setTableColumn('name')" width="186"></el-table-column>
                 <el-table-column label="性别" prop="sex" v-if="setTableColumn('sex')" width="112"></el-table-column>
                 <el-table-column label="年龄" prop="age" v-if="setTableColumn('age')" width="112"></el-table-column>
+                <el-table-column label="爱好" prop="like" v-if="setTableColumn('like')" width="112" :formatter="(row, column, cellValue) => selectFormatter(cellValue, options.like)"></el-table-column>
                 <el-table-column label="地址" prop="address" v-if="setTableColumn('address')" min-width="256"></el-table-column>
             </el-table>
             <template #footer>
@@ -158,6 +159,7 @@
 				name: '王小虎',
 				age: 31,
 				sex: '男',
+				like: 'football',
 				address: '上海市普陀区金沙江路 1518 弄'
 			};
 			return {
@@ -212,7 +214,8 @@
                             label: '蚵仔煎',
                             value: '选项4'
                         }
-                    ]
+                    ],
+                    like:[]
                 },
 
                 /**
@@ -316,6 +319,18 @@
                     console.log(response)
                     getTable({'api':123}).then( response => {
                         console.log(response)
+
+                        this.options.like = [
+                            {
+                                label: '篮球',
+                                value: 'basketball'
+                            },
+                            {
+                                label: '足球',
+                                value: 'football',
+                                disabled: true
+                            }
+                        ]
                     });
                 });
 
