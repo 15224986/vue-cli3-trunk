@@ -1,5 +1,16 @@
 export default {
 	methods:{
+        /**
+         * 表格对应select格式化
+         */
+        selectFormatter( key, data ){
+            for (let i=0; i<data.length; i++){
+            	let item = data[i];
+                if( key == item.value ){
+                    return item.label
+                }
+            }
+        },
 		/**
 		 * 格式化表格里面的时间日期结构
 		 */
