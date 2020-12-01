@@ -1,6 +1,6 @@
 <template>
     <el-container id="page-container">
-		<el-header class="moc-page-header">
+		<el-header id="page-header">
             <div class="moc-page-nav">
                 <router-link :to="{path:'/'}">首页</router-link>
             </div>
