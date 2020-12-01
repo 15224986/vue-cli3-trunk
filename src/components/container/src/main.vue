@@ -1,7 +1,7 @@
 <template>
-	<main class="moc-container" :class="{'moc-horizontal': horizontal, 'moc-display-flex': displayFlex}">
+	<article class="moc-container" :class="{'moc-horizontal': horizontal, 'moc-display-flex': displayFlex}">
         <slot></slot>
-    </main>
+    </article>
 </template>
 
 <script>
