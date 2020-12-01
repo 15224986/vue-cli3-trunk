@@ -12,7 +12,11 @@ body,
 #page-container{
 	height: 100%;
 }
-.moc-page-header{
+
+/**
+ * 顶部导航
+ */
+#page-header{
 	background-color: $mainColor;
 }
 .moc-page-nav {
@@ -21,6 +25,14 @@ body,
 		color: #ffffff;
 	}
 }
+/**
+ * 主体部分
+ */
+#page-content{
+	background-color: $bgColor;
+}
+
+
 /**
  * 左导航
  */
