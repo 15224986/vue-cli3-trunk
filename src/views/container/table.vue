@@ -62,7 +62,6 @@
                     <el-button @click="onSearch()" type="primary">查询</el-button>
                     <el-button @click="testAssignCloneDeep()" type="primary">测试扩展运算符和复杂数据深层复制</el-button>
                     <el-button @click="dialogShow()" type="primary">弹出框显示</el-button>
-                    <table-column-config v-model="tableColumnConfigShow" :table-column-all="tableColumnAll" :page-type="tableColumnConfigType"></table-column-config>
                 </el-form-item>
             </el-form>
         </moc-section>
@@ -78,12 +77,12 @@
                 stripe
             >
                 <el-table-column label="序号" type="index" :index="handleIndex" :width="tableIndexWidth" align="center" class-name="neu-table-index"></el-table-column>
-                <el-table-column label="日期" prop="date" v-if="setTableColumn('date')" width="218" :formatter="dateFormatter"></el-table-column>
-                <el-table-column label="姓名" prop="name" v-if="setTableColumn('name')" width="186"></el-table-column>
-                <el-table-column label="性别" prop="sex" v-if="setTableColumn('sex')" width="112"></el-table-column>
-                <el-table-column label="年龄" prop="age" v-if="setTableColumn('age')" width="112"></el-table-column>
-                <el-table-column label="爱好" prop="like" v-if="setTableColumn('like')" width="112" :formatter="(row, column, cellValue) => selectFormatter(cellValue, options.like)"></el-table-column>
-                <el-table-column label="地址" prop="address" v-if="setTableColumn('address')" min-width="256"></el-table-column>
+                <el-table-column label="日期" prop="date" width="218" :formatter="dateFormatter"></el-table-column>
+                <el-table-column label="姓名" prop="name" width="186"></el-table-column>
+                <el-table-column label="性别" prop="sex" width="112"></el-table-column>
+                <el-table-column label="年龄" prop="age" width="112"></el-table-column>
+                <el-table-column label="爱好" prop="like" width="112" :formatter="(row, column, cellValue) => selectFormatter(cellValue, options.like)"></el-table-column>
+                <el-table-column label="地址" prop="address" min-width="256"></el-table-column>
             </el-table>
             <template #footer>
                 <p style="padding: 6px;">class里面的project为项目名称</p>
@@ -133,8 +132,6 @@
     import tableCommon from '@/mixins/tableCommon.js';
     // 表格数据格式化
     import tableFormatter from '@/mixins/tableFormatter.js';
-    // 表格配置列显示
-    import tableColumnConfig from '@/mixins/tableColumnConfig.js';
 
     import {
         getTableData,
@@ -149,7 +146,7 @@
      * 4.不常用的写在utils里面，按需引入
      */
     export default {
-        mixins:[ common, tableCommon, tableFormatter, tableColumnConfig ],
+        mixins:[ common, tableCommon, tableFormatter ],
         components: {
             tableDialog:()=>import('./table-dialog.vue')
         },
@@ -221,34 +218,7 @@
                 /**
                  * 弹出框
                  */
-                dialogVisible: false,
-                /**
-                 * 配置表格展示的列
-                 */
-                tableColumnConfigType: 11,
-                tableColumnAll:[
-                    {
-                        label: "日期",
-                        key: "date"
-                    },
-                    {
-                        label: "姓名",
-                        key: "name"
-                    },
-                    {
-                        label: "性别",
-                        key: "sex"
-                    },
-                    {
-                        label: "年龄",
-                        key: "age"
-                    },
-                    {
-                        label: "地址",
-                        key: "address",
-                        disabled: true
-                    }
-                ]
+                dialogVisible: false
 			}
         },
         created(){
