@@ -1,7 +1,7 @@
 <template>
-	<section class="moc-container" :class="{'moc-horizontal': horizontal, 'moc-display-flex': displayFlex}">
+	<main class="moc-container" :class="{'moc-horizontal': horizontal, 'moc-display-flex': displayFlex}">
         <slot></slot>
-    </section>
+    </main>
 </template>
 
 <script>
