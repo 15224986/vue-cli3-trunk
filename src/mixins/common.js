@@ -8,6 +8,12 @@ export default {
 		}
 	},
 	methods: {
-		
+		$loadDom(callback, times=500){
+			this.$nextTick(function () {
+				setTimeout(()=>{
+					callback && typeof(callback)==="function" ? callback.call(this) : ""
+				}, times);
+			});
+		},
 	}
 }
