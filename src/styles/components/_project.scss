@@ -21,8 +21,16 @@ body,
 }
 .moc-page-nav {
 	line-height: 60px;
-	a{
+	.moc-page-nav-item{
+		display: block;
+		float: left;
+		padding: 0 20px;
 		color: #ffffff;
+		line-height: 60px;
+		&:hover,
+		&.moc-active{
+			background-color: #2d71b6;
+		}
 	}
 }
 /**
