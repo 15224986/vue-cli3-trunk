@@ -7,7 +7,7 @@ Vue.use(Router);
 import container from './modules/container'
 const router = new Router({
 	// mode: 'history',
-	linkActiveClass: "active",
+	linkActiveClass: "moc-active",
 	routes: [
 		{
 			path: '/',
