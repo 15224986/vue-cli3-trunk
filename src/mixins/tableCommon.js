@@ -8,6 +8,7 @@ export default {
 			/**
              * 表格相关
 			 */
+            calcTableHeightDom: '#project-table', // 表格高度依据的dom
             tableHeight: 100,           // 表格高度
 			tableIndexWidth: 56,        // 表格序号列的宽度
             /**
@@ -34,10 +35,8 @@ export default {
         /**
          * 表格计算高度
          */
-        this.calcTableHeight('#project-table');
-        window.addEventListener('resize', ()=>{
-            this.calcTableHeight('#project-table');
-        }, false);
+        this.calcTableHeight();
+        window.addEventListener('resize', this.calcTableHeight, false);
     },
     beforeDestroy () {
         window.removeEventListener('resize', this.calcTableHeight, false);
@@ -52,7 +51,7 @@ export default {
         /**
          * 计算表格的高度
          */
-        calcTableHeight(dom, minuend = 0){
+        calcTableHeight( event, minuend = 0){
             /**
              * 预定义变量
              */
@@ -61,9 +60,9 @@ export default {
              * 初始化设置table的高度
              */
             this.$nextTick( ()=>{
-                let $dom = $(dom),
-                    $head = $(dom + ' .moc-container-section-header'),
-                    $foot = $(dom + ' .moc-container-section-footer'),
+                let $dom = $(this.calcTableHeightDom),
+                    $head = $(this.calcTableHeightDom + ' .moc-container-section-header'),
+                    $foot = $(this.calcTableHeightDom + ' .moc-container-section-footer'),
                     headH = $head ? $head.offsetHeight : 0,
                     footH = $foot ? $foot.offsetHeight : 0;
                 if($dom){
