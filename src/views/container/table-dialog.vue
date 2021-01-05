@@ -141,6 +141,7 @@
                 /**
                  * 表格
                  */
+                calcTableHeightDom:".project-dialog-table",
 				tableData: Array(20).fill(item),
                 options:{
                     region:[
@@ -189,11 +190,7 @@
             this.inintData();
         },
         mounted () {
-            // 计算高度
-            this.calcTableHeight('.project-dialog-table');
-            window.addEventListener('resize', ()=>{
-                this.calcTableHeight('.project-dialog-table');
-            }, false);
+
         },
         methods:{
             /**
