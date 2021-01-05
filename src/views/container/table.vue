@@ -65,7 +65,7 @@
                 </el-form-item>
             </el-form>
         </moc-section>
-        <moc-section id="project-table-box" bodier>
+        <moc-section id="project-table" bodier>
             <template #header>
                 <p>class里面的project为项目名称</p>
             </template>
@@ -222,14 +222,10 @@
 			}
         },
         created(){
-            this.initOptions();
+            // this.initOptions();
         },
         mounted () {
-            // 计算高度
-            this.calcTableHeight('#project-table-box');
-            window.addEventListener('resize', ()=>{
-                this.calcTableHeight('#project-table-box');
-            }, false);
+
         },
         methods:{
             dialogShow(){
