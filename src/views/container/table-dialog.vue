@@ -1,5 +1,5 @@
 <template>
-    <moc-container>
+    <moc-container flex>
         <moc-section class="project-search">
             <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
                 <el-form-item label="审批人">
