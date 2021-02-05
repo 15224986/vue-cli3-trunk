@@ -1,15 +1,14 @@
 @charset "utf-8";
 
 .moc-container{
-	height: 100%;
-	position: relative;
-	&.moc-display-flex{
+	&.is-flex{
+		height: 100%;		
 		@include displayFlex;
 		@include boxOrient;
+		&.is-horizontal{	
+			@include boxOrient('horizontal');
+		}	
 	}
-	&.moc-horizontal{	
-		@include boxOrient('horizontal');
-	}	
 }
 .moc-container-section{
 	margin-left: 20px;
