@@ -1,5 +1,5 @@
 <template>
-	<article class="moc-container" :class="{'moc-horizontal': horizontal, 'moc-display-flex': displayFlex}">
+	<article class="moc-container" :class="{'is-horizontal': horizontal, 'is-flex': flex}">
         <slot></slot>
     </article>
 </template>
@@ -9,15 +9,11 @@
 		name: 'mocContainer',
 		componentName: 'mocContainer',
         props: {
-            displayFlex: {
-                type: Boolean,
-                default: true
-            },
-            horizontal: {
+            flex: {
                 type: Boolean,
                 default: false
             },
-            inner: {
+            horizontal: {
                 type: Boolean,
                 default: false
             }
