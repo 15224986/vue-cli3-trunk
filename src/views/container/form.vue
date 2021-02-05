@@ -1,5 +1,5 @@
 <template>
-    <moc-container>
+    <moc-container flex>
         <moc-section class="moc-breadcrumb">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
