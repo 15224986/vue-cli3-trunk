@@ -1,11 +1,11 @@
 <template>
-    <moc-container horizontal>
+    <moc-container flex horizontal>
         <moc-section class="moc-btns">
             <el-button @click="onSubmit" type="primary">立即创建</el-button>
             <el-button>取消</el-button>
         </moc-section>
         <moc-section class="moc-form" bodier>
-            <moc-container>
+            <moc-container flex>
                 <moc-section class="moc-form" bodier>
                     <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
                         <el-form-item label="账号">
