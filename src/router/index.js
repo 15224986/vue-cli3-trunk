@@ -3,8 +3,23 @@ import Router from 'vue-router';
 // 引入
 Vue.use(Router);
 
-// 引入组件部分
+/**
+ * 解决vue路由重复导航错误
+ * 获取原型对象上的push函数
+ * 修改原型对象中的push方法
+ */
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
+
+
+
+/**
+ * 引入页面模块
+ */
 import container from './modules/container'
+
 const router = new Router({
 	// mode: 'history',
 	linkActiveClass: "moc-active",
@@ -12,12 +27,17 @@ const router = new Router({
 		{
 			path: '/',
 			component: () => import(/* webpackChunkName: "index" */ '@/views/Index'),
-            name: 'home',
+            name: 'root',
             meta:{
-                title: '智能管理平台',
+                title: '智能管理平台'
             },
-            redirect: '/anextUntil',
+            redirect: '/home',
             children: [
+                {
+                    path: 'home',
+                    name: 'home',
+                    component: () => import(/* webpackChunkName: "home" */ '@/views/home/index')
+                },
 				container
             ]
 		}
