@@ -17,9 +17,20 @@ body,
  * 顶部导航
  */
 #page-header{
+	padding: 0;
 	background-color: $mainColor;
 }
+.moc-page-logo{
+	width: 220px;
+	float: left;
+	color: #FFFFFF;
+	font-size: 24px;
+	line-height: 60px;
+	text-align: center;
+	background-color: rgba(#000000, 0.15);
+}
 .moc-page-nav {
+	float: left;
 	line-height: 60px;
 	.moc-page-nav-item{
 		display: block;
