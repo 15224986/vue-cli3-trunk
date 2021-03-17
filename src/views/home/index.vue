@@ -2,6 +2,16 @@
     <el-container id="page-bodier">
         <el-main id="page-content">
             <moc-container>
+
+                <moc-section>
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
+                        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </moc-section>
+
                 <moc-section class="project-index-panel">
                     <el-table
                         :data="tableData"
@@ -15,6 +25,8 @@
                         :load="loadTable"
                         :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
                     >
+                        <el-table-column type="index" label="序号" width="50" align="center"></el-table-column>
+                        <el-table-column type="selection" width="55" align="center"></el-table-column>
                         <el-table-column prop="date" label="日期" sortable width="180"></el-table-column>
                         <el-table-column prop="name" label="姓名" sortable width="180"></el-table-column>
                         <el-table-column prop="address" label="地址"></el-table-column>
@@ -48,7 +60,7 @@
                 tableData: [
                     {
                         id: 1,
-                        date: '2016-05-02',
+                        date: '2021-03-16 18:50:00',
                         name: '王小虎',
                         address: '上海市普陀区金沙江路 1518 弄'
                     },
