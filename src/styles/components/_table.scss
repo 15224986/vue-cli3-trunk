@@ -9,7 +9,7 @@
  */
 .project-search{
 	.el-form-item--small.el-form-item{
-		margin-bottom: 6px;
+		margin-bottom: 10px;
 	}
 	.project-search-btns{
 		.el-button--small{
@@ -33,10 +33,6 @@
 
 
 
-
-
-
-
 /**
  * 
  *
@@ -45,8 +41,6 @@
  *
  */
 .project-pagination{
-	margin-top: 0;
-	margin-bottom: 20px;
 	background-color: #FFFFFF;
 	text-align: center;
 	.el-pagination{
