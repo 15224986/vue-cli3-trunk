@@ -1,6 +1,6 @@
 <template>
     <moc-container flex>
-        <moc-section>
+        <moc-section class="project-breadcrumb">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
@@ -61,14 +61,15 @@
                 <el-form-item class="project-search-btns">
                     <el-button @click="onSearch()" type="primary">查询</el-button>
                     <el-button @click="testAssignCloneDeep()" type="primary">测试扩展运算符和复杂数据深层复制</el-button>
-                    <el-button @click="dialogShow()" type="primary">弹出框显示</el-button>
+                    <el-button @click="tableDialogShow()" type="primary">table 弹出框</el-button>
+                    <el-button @click="formDialogShow()" type="primary">form 弹出框</el-button>
                 </el-form-item>
             </el-form>
         </moc-section>
-        <moc-section id="project-table" bodier>
-            <template #header>
+        <moc-section id="project-table" bodier class="project-table">
+            <!-- <template #header>
                 <p>class里面的project为项目名称</p>
-            </template>
+            </template> -->
             <el-table
                 :data="tableData"
                 :height="tableHeight"
@@ -84,9 +85,9 @@
                 <el-table-column label="爱好" prop="like" width="112" :formatter="(row, column, cellValue) => selectFormatter(cellValue, options.like)"></el-table-column>
                 <el-table-column label="地址" prop="address" min-width="256"></el-table-column>
             </el-table>
-            <template #footer>
+            <!-- <template #footer>
                 <p style="padding: 6px;">class里面的project为项目名称</p>
-            </template>
+            </template> -->
         </moc-section>
         <moc-section class="project-pagination">
             <el-pagination
@@ -102,22 +103,8 @@
             </el-pagination>
         </moc-section>
 
-        <el-dialog
-            title="提示"
-            :visible.sync="dialogVisible"
-            width="88%"
-            top="50px"
-            append-to-body
-            v-mocDialogDrag
-            custom-class="moc-dialog-fixed"
-            @closed="search.obj.b++"
-        >
-            <table-dialog :groupId="search.obj.b" ref="dialogTableTemplate"></table-dialog>
-            <template #footer>
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-            </template>
-        </el-dialog>
+        <table-dialog :visible="tableDialogVisible" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
+        <form-dialog :visible="formDialogVisible" @after-callback="dialogCallback" ref="dialogFormTemplate"></form-dialog>
 
     </moc-container>
 </template>
@@ -148,7 +135,8 @@
     export default {
         mixins:[ common, tableCommon, tableFormatter ],
         components: {
-            tableDialog:()=>import('./table-dialog.vue')
+            tableDialog:()=>import('./table-dialog.vue'),
+            formDialog:()=>import('./form-dialog.vue')
         },
         data () {
             const item = {
@@ -218,7 +206,8 @@
                 /**
                  * 弹出框
                  */
-                dialogVisible: false
+                tableDialogVisible: false,
+                formDialogVisible: false
 			}
         },
         created(){
@@ -228,12 +217,21 @@
 
         },
         methods:{
-            dialogShow(){
-                this.dialogVisible = true;
-                if (this.$refs.dialogTableTemplate !== undefined) {     // 如果存在，说明不是第一次执行
+            tableDialogShow(){
+                this.tableDialogVisible = true;
+                if (this.$refs.dialogTableTemplate !== undefined) {     // 判断是否存在
                     this.$refs.dialogTableTemplate.inintData()
                 }
             },
+            dialogCallback(type){
+                this.tableDialogVisible = false;
+                this.formDialogVisible = false;
+            },
+            formDialogShow(){
+                this.formDialogVisible = true;
+            },
+
+
             testAssignCloneDeep(){
                 /**
                  * 合并参数的时候，如果被合并的对象里面存在arr、obj等，需要使用深层复制，才可以对参数进行修改
