@@ -26,7 +26,7 @@
                 </el-menu-item>
     		</el-menu>
     	</el-aside>
-        <el-main id="page-content" class="stage-animation">
+        <el-main id="page-content">
             <transition  name="stage-left-right" mode="out-in">
                 <router-view></router-view>
             </transition>
@@ -62,9 +62,6 @@
     }
 </script>
 <style lang="scss">
-    .stage-animation{
-        overflow: hidden
-    }
     /* 可以设置不同的进入和离开动画 */
     /* 设置持续时间和动画函数 */
     .stage-left-right-enter-active,
