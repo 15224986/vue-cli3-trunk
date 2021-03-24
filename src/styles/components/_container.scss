@@ -1,23 +1,27 @@
 @charset "utf-8";
 
 .moc-container{
-	height: calc(100% - 40px);
-	margin: 20px;
+	height: 100%;
+	overflow: auto;
 	&.is-flex{
 		@include displayFlex;
 		@include boxOrient;
+		overflow: hidden;
 		&.is-horizontal{	
 			@include boxOrient('horizontal');
 		}	
 	}
 }
 .moc-container-section{
-	+ .moc-container-section{
-		margin-top: 20px;	
+	margin: 20px;
+	margin-top: 0;
+	&:first-child{
+		margin-top: 20px;
 	}
-	&.project-pagination,
+	&.project-form,
+	&.project-search,
 	&.project-table{
-		margin-top: 0;
+		margin-bottom: 0;
 	}
 	&.is-bodier{
 		@include displayFlexNumber;
@@ -33,7 +37,9 @@
 }
 
 
-
+.project-btns{
+	text-align: right;
+}
 
 
 
