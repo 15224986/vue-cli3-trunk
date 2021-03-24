@@ -27,4 +27,18 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 }
 
 
-
+// **************************** el-dialog **********************************
+.el-dialog__body {
+	padding: 0;
+}
+.el-dialog__header{
+	border-bottom: #DCDFE6 1px solid;
+	padding: 14px 20px;
+}
+.el-dialog__headerbtn{
+	top: 17px;
+}
+.el-dialog__footer{
+	border-top: #DCDFE6 1px solid;
+	padding: 14px 20px;
+}
