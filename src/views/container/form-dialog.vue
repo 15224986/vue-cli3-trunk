@@ -6,7 +6,7 @@
         top="50px"
         append-to-body
         v-mocDialogDrag
-        custom-class="moc-dialog-fixed"
+        fullscreen
         @close="onCancel()"
     >
         <moc-container>
@@ -64,6 +64,14 @@
         mounted(){
 
         },
+        watch:{
+            visible:{
+                immediate: false,
+                handler(val, oldName){
+                    console.log( val )
+                }
+            }
+        },
         methods:{
             /**
              * 确定、取消
@@ -72,7 +80,7 @@
                 this.$emit('after-callback', true);
             },
             onCancel(){
-                this.$emit('after-callback', true);
+                this.$emit('after-callback', false);
             },
         }
     }
