@@ -89,8 +89,16 @@ body,
 
 
 
-
-
-
-
-
+.project-form,
+.project-search,
+.project-table{
+	margin-bottom: 0;
+}
+.project-btns{
+	text-align: right;
+}
+.el-dialog__body{
+	.project-form{
+		margin-bottom: 20px;
+	}
+}
