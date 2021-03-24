@@ -1,5 +1,5 @@
 <template>
-    <moc-container flex>
+    <moc-container>
         <moc-section class="project-breadcrumb">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -9,7 +9,7 @@
             </el-breadcrumb>
         </moc-section>
 
-        <moc-section class="moc-form" bodier>
+        <moc-section class="project-form">
             <p>典型表单</p>
             <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
                 <el-form-item v-for="item in conts" :key="item" label="活动名称">
@@ -23,9 +23,9 @@
                 </el-form-item>
             </el-form>
         </moc-section>
-        <moc-section class="moc-btns">
-            <el-button type="primary">立即创建</el-button>
+        <moc-section class="project-btns">
             <el-button>取消</el-button>
+            <el-button type="primary">立即创建</el-button>
         </moc-section>
 
     </moc-container>
