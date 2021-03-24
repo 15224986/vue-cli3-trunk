@@ -18,11 +18,6 @@
 	&:first-child{
 		margin-top: 20px;
 	}
-	&.project-form,
-	&.project-search,
-	&.project-table{
-		margin-bottom: 0;
-	}
 	&.is-bodier{
 		@include displayFlexNumber;
 		position: relative;
@@ -37,9 +32,7 @@
 }
 
 
-.project-btns{
-	text-align: right;
-}
+
 
 
 
