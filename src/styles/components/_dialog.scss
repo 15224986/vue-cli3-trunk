@@ -1,23 +1,4 @@
 @charset "utf-8";
-.el-dialog{
-	.el-dialog__body {
-	    padding: 0;
-	}
-}
-.el-dialog__header{
-	border-bottom: #DCDFE6 1px solid;
-	padding: 14px 20px;
-}
-.el-dialog__headerbtn{
-	top: 17px;
-}
-.el-dialog__footer{
-	border-top: #DCDFE6 1px solid;
-	padding: 14px 20px;
-}
-
-
-
 /**
  * 可以拖动时
  * header 栏里面的文字不可以选中
@@ -30,7 +11,7 @@
 /**
  * 
  *
- * 弹框样式
+ * 固定大小
  * 
  * 
  */
