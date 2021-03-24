@@ -208,7 +208,7 @@
 			}
         },
         created(){
-
+            this.initOptions();
         },
         mounted () {
 
@@ -253,6 +253,8 @@
              */
             initTableData() {
                 let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination };
+
+                this.pagination.total = this.tableData.length * 2
             },
         }
     }
