@@ -5,7 +5,6 @@
         width="960px"
         top="50px"
         append-to-body
-        v-mocDialogDrag
         fullscreen
         @close="onCancel()"
     >
