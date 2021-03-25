@@ -74,22 +74,24 @@ export default {
                     //  * 判断这个div的高度是否和table的高度相等，如果相等执行计数，如果连续runNumber次(每次1s钟)相等，则停止循环
                     //  * 如果不相等，则将div的高度 赋值给table，并从新开始计数
                     //  */
-                    let timesRun = 0,               // 当前循环次数
-                        runNumber = 60,             // 多少秒之后停止算
-                        coefficient = 5,            // 系数
-                        intervals = 200;            // 循环间隔时间
-                    let interval = setInterval( ()=>{
-                        let containerH = $dom.offsetHeight - headH - footH - minuend;
-                        if( this.tableHeight === containerH ){
-                            timesRun++;
-                            if( timesRun > runNumber*coefficient ){
-                                clearInterval(interval);
-                            }
-                        }else{
-                            timesRun = 0;
-                            this.tableHeight = containerH;
-                        }
-                    }, intervals);
+                    // let timesRun = 0,               // 当前循环次数
+                    //     runNumber = 10,             // 多少秒之后停止算
+                    //     coefficient = 5,            // 系数
+                    //     intervals = 200;            // 循环间隔时间
+                    // let interval = setInterval( ()=>{
+                    //     let containerH = $dom.offsetHeight - headH - footH - minuend;
+
+                    //     console.log(containerH)
+                    //     if( this.tableHeight === containerH ){
+                    //         timesRun++;
+                    //         if( timesRun >= runNumber*coefficient ){
+                    //             clearInterval(interval);
+                    //         }
+                    //     }else{
+                    //         timesRun = 0;
+                    //         this.tableHeight = containerH;
+                    //     }
+                    // }, intervals);
                 }
             });
         }
