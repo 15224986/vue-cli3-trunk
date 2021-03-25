@@ -3,8 +3,6 @@
         title="系统提示"
         :visible="visible"
         width="960px"
-        top="50px"
-        append-to-body
         fullscreen
         @close="onCancel()"
     >
@@ -66,9 +64,12 @@
         watch:{
             visible:{
                 immediate: false,
-                handler(val, oldName){
-                    console.log( val )
+                handler(newValue, oldValue){
+                    console.log( newValue )
                 }
+            },
+            groupId:(newValue, oldValue)=>{
+                console.log( newValue )
             }
         },
         methods:{
