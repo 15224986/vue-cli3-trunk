@@ -1,6 +1,28 @@
 @charset "utf-8";
 
 /**
+ * 行内表单 设置宽度
+ */
+.el-form--inline{
+	@for $i from 0 through 80 {
+		&.content-width-#{$i*10},
+		.el-form-item.content-width-#{$i*10}{
+			.el-input,
+			.project-form-text,
+			.el-input-number {
+				width: #{$i*10}px;
+			}
+			.el-date-editor--daterange.el-input__inner,
+			.el-date-editor--datetimerange.el-input__inner,
+			.el-date-editor--monthrange.el-input__inner{
+				width: #{$i*20}px;
+			}
+		}
+	}
+}
+
+
+/**
  * 
  *
  * 与表单相关的组件
@@ -36,22 +58,7 @@
  *
  */
 .project-form-inline{
-	@for $i from 0 through 80 {
-		&.content-width-#{$i*10},
-		.el-form-item.content-width-#{$i*10}{
-			&.el-input,
-			.el-input,
-			&.el-input-number,
-			.el-input-number {
-				width: #{$i*10}px;
-			}
-			.el-date-editor--daterange.el-input__inner,
-			.el-date-editor--datetimerange.el-input__inner,
-			.el-date-editor--monthrange.el-input__inner{
-				width: #{$i*20}px;
-			}
-		}
-	}
+	
 }
 
 
@@ -106,6 +113,12 @@
  *
  *
  */
+.project-form-text{
+	color: #666666;
+	&.el-tooltip{
+		@include text-overflow;
+	}
+}
 .project-form-details{
 	.el-form-item--mini.el-form-item{
 		margin-bottom: 6px;
