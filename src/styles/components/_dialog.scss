@@ -17,6 +17,7 @@
  */
 .is-fullscreen,
 .moc-dialog-fixed{
+	margin-bottom: 0;
 	&:not(.el-loading-mask):not(.is-fullscreen){
 		height: calc(100% - 100px);
 	}
