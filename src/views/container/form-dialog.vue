@@ -9,15 +9,21 @@
         <moc-container>
             <moc-section class="project-form">
                 <p>典型表单</p>
-                <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
+                <el-form ref="formHorizontal" :model="form" label-width="100px" class="project-form-horizontal" label-suffix="：">
                     <el-form-item v-for="item in conts" :key="item" label="活动名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
                 </el-form>
                 <p>行内表单</p>
-                <el-form ref="formInline" :model="form" label-width="80px" :inline="true" class="moc-form-inline">
+                <el-form ref="formInline" :model="form" label-width="100px" :inline="true" class="project-form-inline" label-suffix="：">
                     <el-form-item v-for="item in conts" :key="item" label="活动名称">
                         <el-input v-model="form.name"></el-input>
+                    </el-form-item>
+                </el-form>
+                <p>查看详情</p>
+                <el-form ref="formInline" :model="form" label-width="100px" :inline="true" class="project-form-details content-width-180" label-suffix="：">
+                    <el-form-item v-for="item in conts" :key="item" label="活动名称">
+                        <p class="project-form-text">{{form.name}}</p>
                     </el-form-item>
                 </el-form>
             </moc-section>
