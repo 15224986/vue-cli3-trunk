@@ -120,8 +120,11 @@ Vue.prototype.$global = Global
  * 全局指令
  * 案例： home/directiveFilters
  */
-import dialogDrag from '@/directives/dialogDrag.js'
-Vue.use(dialogDrag)
+import * as directives from '@/directives'
+// 注册指令
+Object.keys(directives).forEach(k => {
+    Vue.directive(k, directives[k])
+})
 
 
 /**
