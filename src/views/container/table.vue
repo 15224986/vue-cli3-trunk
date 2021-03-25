@@ -103,8 +103,26 @@
             </el-pagination>
         </moc-section>
 
-        <table-dialog :visible="tableDialogVisible" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
-        <form-dialog :visible="formDialogVisible" @after-callback="dialogCallback" ref="dialogFormTemplate"></form-dialog>
+
+        <!-- 弹出框 -->
+        <el-dialog
+            title="建议这样使用，下面的例子destroy-on-close属性无法使用"
+            :visible.sync="tableDialogVisible"
+            width="88%"
+            top="50px"
+            append-to-body
+            v-mocDialogDrag
+            custom-class="moc-dialog-fixed"
+            destroy-on-close
+        >
+            <table-dialog :groupId="new Date().getTime()" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
+            <template #footer>
+                <el-button @click="$refs.dialogTableTemplate.onSubmit()">取 消</el-button>
+                <el-button @click="$refs.dialogTableTemplate.onCancel()" type="primary">确 定</el-button>
+            </template>
+        </el-dialog>
+
+        <form-dialog :visible="formDialogVisible" :groupId="new Date().getTime()" @after-callback="dialogCallback"></form-dialog>
 
     </moc-container>
 </template>
@@ -219,17 +237,24 @@
         methods:{
             tableDialogShow(){
                 this.tableDialogVisible = true;
+                /**
+                 * 通过调用子组件里面的方法实现初始化
+                 */
                 if (this.$refs.dialogTableTemplate !== undefined) {     // 判断是否存在
                     this.$refs.dialogTableTemplate.inintData()
                 }
+            },
+            formDialogShow(){
+                /**
+                 * 通过监听visible字段的变化进行初始化
+                 */
+                this.formDialogVisible = true;
             },
             dialogCallback(type){
                 this.tableDialogVisible = false;
                 this.formDialogVisible = false;
             },
-            formDialogShow(){
-                this.formDialogVisible = true;
-            },
+
 
 
             testAssignCloneDeep(){
