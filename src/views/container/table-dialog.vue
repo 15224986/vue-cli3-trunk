@@ -13,7 +13,7 @@
             <moc-section class="project-search">
                 <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
                     <el-form-item label="审批人">
-                        <el-input v-model="groupId" clearable placeholder="审批人"></el-input>
+                        <el-input v-model="search.user" clearable placeholder="审批人"></el-input>
                     </el-form-item>
                     <el-form-item label="活动区域">
                         <el-select
