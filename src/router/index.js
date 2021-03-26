@@ -19,6 +19,7 @@ Router.prototype.push = function push(location) {
  * 引入页面模块
  */
 import container from './modules/container'
+import assets from './modules/assets'
 
 const router = new Router({
 	// mode: 'history',
@@ -38,7 +39,8 @@ const router = new Router({
                     name: 'home',
                     component: () => import(/* webpackChunkName: "home" */ '@/views/home/index')
                 },
-				container
+				container,
+                assets
             ]
 		}
 	]
