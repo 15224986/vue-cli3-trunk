@@ -13,10 +13,10 @@
 	}
 }
 .moc-container-section{
-	margin: 20px;
+	margin: 10px;
 	margin-top: 0;
 	&:first-child{
-		margin-top: 20px;
+		margin-top: 10px;
 	}
 	&.is-bodier{
 		@include displayFlexNumber;
@@ -32,9 +32,51 @@
 }
 
 
+.moc-section-tabs{
+	margin: 10px;
+	margin-top: 0;
+	@include displayFlexNumber;
+	position: relative;
+	box-shadow: 0 0 0 0;
+	>.el-tabs__content{
+	    padding: 0;
+	    height: calc(100% - 39px);
+	    .el-tab-pane{
+	        height: 100%;
+	    }
+	}
+	.moc-container-section{
+	    margin-left: 0;
+	    margin-right: 0;
+	}
+	.project-search{
+		margin-top: 0;
+	}
+}
 
-
-
+.moc-container-tabs{
+	height: calc(100% - 22px);
+	margin: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 0 0;
+	>.el-tabs__content{
+	    padding: 0;
+	    height: calc(100% - 39px);
+	    .el-tab-pane{
+	        height: 100%;
+	    }
+	}
+	
+	.moc-container-section{
+	    margin-left: 0;
+	    margin-right: 0;
+	}
+	.project-toolbar{
+		padding-left: 20px;
+		margin-bottom: 0;
+	}
+}
+	
 
 
 
