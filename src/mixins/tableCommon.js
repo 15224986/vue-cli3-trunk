@@ -8,16 +8,17 @@ export default {
 			/**
              * 表格相关
 			 */
-            calcTableHeightDom: '#project-table', // 表格高度依据的dom
-            tableHeight: 100,           // 表格高度
-			tableIndexWidth: 56,        // 表格序号列的宽度
+            calcTableHeightDom: '#project-table',       // 表格高度依据的dom
+            calcTableHeightMinuend: 0,                  // 表格去除的高度
+            tableHeight: 100,                           // 表格高度
+			tableIndexWidth: 56,                        // 表格序号列的宽度
             /**
              * 分页器
              */
             pagination: {
-                current: 1,         // 当前页
-                size: 20,           // 每页显示条数
-                total: 0,        // 总条数
+                current: 1,             // 当前页
+                size: 20,               // 每页显示条数
+                total: 0,               // 总条数
             },
 		}
 	},
@@ -35,7 +36,9 @@ export default {
         /**
          * 表格计算高度
          */
-        this.calcTableHeight();
+        this.$nextTick(()=>{
+            this.calcTableHeight(this.calcTableHeightMinuend);
+        })
         window.addEventListener('resize', this.calcTableHeight, false);
     },
     beforeDestroy () {
@@ -52,7 +55,7 @@ export default {
          * 计算表格的高度
          * minuend 高度去掉多少
          */
-        calcTableHeight(minuend = 0){
+        calcTableHeight(minuend){
             /**
              * 预定义变量
              */
