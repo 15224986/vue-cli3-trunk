@@ -99,8 +99,69 @@ body,
 .project-btns{
 	text-align: right;
 }
+.project-search{
+	padding: 10px 20px 0;
+}
+
 .el-dialog__body{
 	.project-form{
 		margin-bottom: 20px;
 	}
 }
+
+
+
+#assets{
+	.moc-container-section{
+		background-color: #FFFFFF;
+	}
+	.project-toolbar{
+		background-color: transparent;
+	}
+	.project-table {
+		& > .moc-container-section-inner{
+			width: calc(100% - 40px);
+			height: 100%;
+			position: absolute;
+			left: 20px;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.m-t-0{
+	margin-top: 0 !important;
+}
+.m-b-0{
+	margin-bottom: 0 !important;
+}
+
+
+
+
+
+
+
+
