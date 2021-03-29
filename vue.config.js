@@ -71,6 +71,16 @@ module.exports = {	// webpack-dev-server 相关配置
   	 * 配置sass的公共资源
   	 */
   	chainWebpack: config => {
+        /**
+         * 页面相关设置
+         */
+        config
+            .plugin('html')
+            .tap(args => {
+                args[0].title= '你想设置的title名字'
+                args[0].template = 'public/index.html'
+                return args
+            })
 		/**
 		 * 加载sass的公共文件 _mixin.scss 和 _variables.scss
 		 */
