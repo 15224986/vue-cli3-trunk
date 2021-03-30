@@ -229,7 +229,7 @@
 			}
         },
         created(){
-            // this.initOptions();
+            this.initOptions();
         },
         mounted () {
 
@@ -291,18 +291,12 @@
                 /**
                  * 模拟请求数据
                  */
-                // this.$http.post(`/mock/tableData`, {'api':123}, {baseURL:''}).then( res => {
-                //     console.log(res)
-                // })
-                // .catch( error => {
-                //     this.$message(error);
-                // });
-                // this.$http.get(`/mock/table?api=123`, {}, {baseURL:''}).then( res => {
-                //     console.log(res)
-                // })
-                // .catch( error => {
-                //     this.$message(error);
-                // });
+                this.$http.post(`/mock/tableData`, {'api':123}, {baseURL:''}).then( res => {
+                    console.log(res)
+                });
+                this.$http.get(`/mock/table?api=123`, {}, {baseURL:''}).then( res => {
+                    console.log(res)
+                });
 
                 getTableData().then( response => {
                     console.log(response)
