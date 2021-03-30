@@ -1,14 +1,10 @@
 import request from '@/axios/request'
 
-export function getTableData(username, password) {
-    const params = {
-        userName: username,
-        password: password
-    }
+export function getTableData(params) {
     return request({
         url: '/mock/tableData',
         method: 'post',
-        params
+        data: params
     })
 }
 export function getTable(params) {
