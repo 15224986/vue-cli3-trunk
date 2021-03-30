@@ -1,15 +1,9 @@
 import Axios from 'axios';
-import Qs from 'qs';
-import Vue from 'vue';
-
-
 /**
  * 引入路径
  * 不同服务器的ip地址
  */
 import { axiosBaseURL } from '@/config/ip.js'
-
-
 /**
  * 使用自定义配置新建一个 axios 实例
  */
@@ -198,145 +192,58 @@ http.patch = (url, data = {}, obj = {}) => {
     });
 }
 
+
+
+
+import {
+    showFullScreenLoading,
+    tryHideFullScreenLoading,
+    hideFullScreenLoading,
+    checkResponse
+} from './utils.js'
+
 /**
- * 拦截器
- * 在请求或响应被 then 或 catch 处理前拦截它们。
+ * 请求拦截器
  */
-// 引入路由
-import router from '@/router';   // vue-router
-import { MessageBox } from 'element-ui';
-
-// 引入loading
-import { Loading } from 'element-ui';
-// 定义loading变量
-let loading
-// 使用Element loading-start 方法
-function startLoading() {
-    loading = Loading.service({
-        lock: false,
-        body: true,
-        text: '加载中……',
-        background: 'rgba(0, 0, 0, 0.7)'
-    })
-}
-// 使用Element loading-close 方法
-function endLoading() {
-    loading.close()
-}
-/**
- * 那么 showFullScreenLoading() tryHideFullScreenLoading() 要干的事儿就是将同一时刻的请求合并。
- * 声明一个变量 needLoadingRequestCount，每次调用showFullScreenLoading方法 needLoadingRequestCount + 1。
- * 调用tryHideFullScreenLoading()方法，needLoadingRequestCount - 1。needLoadingRequestCount为 0 时，结束 loading。
- */
-let needLoadingRequestCount = 0
-function showFullScreenLoading() {
-    if (needLoadingRequestCount === 0) {
-        startLoading()
-    }
-    needLoadingRequestCount++
-}
-function tryHideFullScreenLoading() {
-    if (needLoadingRequestCount <= 0) return
-    needLoadingRequestCount--
-    if (needLoadingRequestCount === 0) {
-        endLoading()
-    }
-}
-
-
-
-// 请求拦截器
 instance.interceptors.request.use((config) => {
-
-    // console.log(config);
-
-    axiosRequestUse(config)
-
+    /**
+     * 发送请求携带 token
+     * 判断本地是否存在token，如果存在的话，则每个http header都加上token
+     */
+    const token = window.localStorage.getItem("token");
+    if (token) {
+        config.headers['token'] = token;
+    }
+    /**
+     * 是否开启了 FullScreenLoading
+     */
+    showFullScreenLoading(config)
+    /**
+     * 参数
+     */
     return config;
 }, error =>{
     // 对请求错误做些什么
     return Promise.reject(error)
 });
-function axiosRequestUse(config){
 
-    /**
-     * 在发送请求之前转换post传过去时的参数格式
-     * 安装插件 querystring 进行转化
-     * 通过querystring 将json格式的请求数据转换为form-data格式
-     */
-    // if (config.method === 'post' || config.method === 'put' ) {
-    //     config.data = Qs.stringify(config.data);
-    // }
-
-
-    /**
-     * 发送请求携带 token
-     * 判断本地是否存在token，如果存在的话，则每个http header都加上token
-     */
-    // const token = window.localStorage.getItem("token");
-    // if (token) {
-    //     config.headers['token'] = token;
-    // }
-
-    /**
-     * 是否开启 loading
-     * 如果参数中携带了 closeFullScreenLoading = true 则关闭本次的加载中调用
-     */
-    let closeFullScreenLoading = '';
-    if (config.method === 'get' || config.method === 'delete' ) {
-        closeFullScreenLoading = config.params.closeFullScreenLoading;
-    }else{
-        closeFullScreenLoading = config.data.closeFullScreenLoading;
-    }
-    if( !closeFullScreenLoading ){
-    	showFullScreenLoading();
-    }
-}
-
-
-// 添加响应拦截器
+/**
+ * 添加响应拦截器
+ */
 instance.interceptors.response.use(response =>{
     /**
-     * 是否开启了 loading
-     * 如果参数中携带了 closeFullScreenLoading = true 则本次加载了loading，
-     * 关闭本次开启的FullScreenLoading()
+     * 是否开启了 FullScreenLoading
      */
-    let closeFullScreenLoading = '';
-    if (response.config.method === 'get' || response.config.method === 'delete' ) {
-        closeFullScreenLoading = response.config.params.closeFullScreenLoading;
-    }else{
-        closeFullScreenLoading = JSON.parse(response.config.data).closeFullScreenLoading;
-    }
-    if( !closeFullScreenLoading ){
-        tryHideFullScreenLoading();
-    }
-
+    tryHideFullScreenLoading(response.config)
     /**
      * 根据result跳转到响应页面
      */
-    if( response.data.result == 702 ){
-        router.push({ path: "/login" });
-    }else if( response.data.result == 400 ){
-        router.push({ path: "/400" });
-    }else if( response.data.result == -1 ){
-        MessageBox.alert( response.data.msg, '系统提示', {
-            type: 'error',
-            callback: action => {}
-        });
-    }
-
-
-
-    /**
-     * 返回数据
-     */
-    return response.data;
+    return checkResponse(response)
 }, error =>{
     /**
      * 关闭本次开启的FullScreenLoading()
      */
-    tryHideFullScreenLoading();
-
+    hideFullScreenLoading()
     // 对响应错误做点什么
 	return Promise.reject(error)
 });
