@@ -1,5 +1,5 @@
 {
-    "result": 0,
+    "status": 200,
     "pagination":{
         "current": 1,
         "size": 10,
