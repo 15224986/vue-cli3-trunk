@@ -97,7 +97,7 @@ const produceData = function (opt) {
     return articles
 }
 let mockData = {
-    'result': -1,
+    'status': 200,
     'originLists|10': [
         {
             'id|+1': 1,
