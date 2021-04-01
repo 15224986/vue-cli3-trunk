@@ -1,18 +1,12 @@
 import Vue from 'vue';
-import Router from 'vue-router';
-// 引入
-Vue.use(Router);
 
-/**
- * 解决vue路由重复导航错误
- * 获取原型对象上的push函数
- * 修改原型对象中的push方法
- */
+import Router from 'vue-router';
+// 解决vue路由重复导航错误、获取原型对象上的push函数、修改原型对象中的push方法
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
    return originalPush.call(this, location).catch(err => err)
 }
-
+Vue.use(Router);
 
 
 /**
@@ -26,32 +20,29 @@ const router = new Router({
 	linkActiveClass: "moc-active",
 	routes: [
 		{
-			path: '/',
-			component: () => import(/* webpackChunkName: "index" */ '@/views/Index'),
+			path: '/home',
+			component: () => import(/* webpackChunkName: "index" */ '@/views/home/index'),
             name: 'root',
             meta:{
                 title: '智能管理平台'
-            },
-            redirect: '/home',
-            children: [
-                {
-                    path: 'home',
-                    name: 'home',
-                    component: () => import(/* webpackChunkName: "home" */ '@/views/home/index')
-                },
-				container,
-                assets
-            ]
-		}
+            }
+		},
+        {
+            path: '/contianer',
+            name: 'contianer',
+            component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/index'),
+        	redirect: '/contianer/table',
+        	children: container
+        },
+        {
+            path: '/assets',
+            name: 'assets',
+            component: () => import(/* webpackChunkName: "assets" */ '@/views/assets/index'),
+        	redirect: '/assets/standard',
+        	children: assets
+        }
 	]
 });
-
-
-
-
-
-
-
 
 
 
@@ -76,7 +67,6 @@ NProgress.configure({
 router.beforeEach((to, from, next) => {
 	// 每次切换页面时，调用进度条
     NProgress.start();
-
 	/**
 	 * 动态修改页面的title
 	 */
@@ -85,7 +75,6 @@ router.beforeEach((to, from, next) => {
 	}else{
 		document.title = '智能管理平台';
     }
-
     next();
 });
 
