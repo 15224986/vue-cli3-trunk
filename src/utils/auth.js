@@ -5,6 +5,8 @@ import router from '@/router'; // vue-router
 
 /**
  * @param 定义变量
+ * sessionStorage   用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
+ * localStorage     用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去删除。
  */
 const TokenKey = 'Admin-Token'
 const RefreshTokenKey = 'Admin-Token-Refresh'
@@ -13,35 +15,35 @@ const SidebarOpened = 'App-sidebar-opened'
 
 // 操作token
 export function setToken(token) {
-    localStorage.setItem(TokenKey, token);
+    sessionStorage.setItem(TokenKey, token);
 }
 export function getToken() {
-    return localStorage.getItem(TokenKey)
+    return sessionStorage.getItem(TokenKey)
 }
 export function removeToken() {
-    localStorage.removeItem(TokenKey)
+    sessionStorage.removeItem(TokenKey)
 }
 
 // 操作refreshToken
 export function setRefreshToken(refreshToken) {
-    localStorage.setItem(RefreshTokenKey, refreshToken);
+    sessionStorage.setItem(RefreshTokenKey, refreshToken);
 }
 export function getRefreshToken() {
-    return localStorage.getItem(RefreshTokenKey)
+    return sessionStorage.getItem(RefreshTokenKey)
 }
 export function removeRefreshToken() {
-    localStorage.removeItem(RefreshTokenKey)
+    sessionStorage.removeItem(RefreshTokenKey)
 }
 
 // 操作tokenExpire
 export function setTokenExpire(tokenExpire) {
-    localStorage.setItem(TokenExpire, tokenExpire);
+    sessionStorage.setItem(TokenExpire, tokenExpire);
 }
 export function getTokenExpire() {
-    return localStorage.getItem(TokenExpire)
+    return sessionStorage.getItem(TokenExpire)
 }
 export function removeTokenExpire() {
-    localStorage.removeItem(TokenExpire)
+    sessionStorage.removeItem(TokenExpire)
 }
 
 // 操作sidebarOpened
