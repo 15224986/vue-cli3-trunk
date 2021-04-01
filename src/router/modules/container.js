@@ -1,32 +1,26 @@
-export default {
-    path: 'contianer',
-    name: 'contianer',
-    component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/index'),
-	redirect: '/contianer/table',
-	children: [
-        {
-        	path: 'login',
-        	name: 'loginPage',
-        	component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/login'),
-        	meta: {
-        		title: '登录页面'
-        	}
-        },
-		{
-			path: 'table',
-			name: 'tablePage',
-			component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/table'),
-			meta: {
-				title: '表格页面'
-			}
-		},
-		{
-			path: 'form',
-			name: 'formPage',
-			component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/form'),
-			meta: {
-				title: '表单页面'
-			}
-		}
-	]
-}
+export default [
+    {
+        path: 'login',
+        name: 'loginPage',
+        component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/login'),
+        meta: {
+            title: '登录页面'
+        }
+    },
+    {
+        path: 'table',
+        name: 'tablePage',
+        component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/table'),
+        meta: {
+            title: '表格页面'
+        }
+    },
+    {
+        path: 'form',
+        name: 'formPage',
+        component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/form'),
+        meta: {
+            title: '表单页面'
+        }
+    }
+]
