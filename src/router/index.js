@@ -19,10 +19,15 @@ const router = new Router({
 	// mode: 'history',
 	linkActiveClass: "moc-active",
 	routes: [
+        {
+        	path: '/',
+            name: 'root',
+        	redirect: '/home',
+        },
 		{
 			path: '/home',
+            name: 'home',
 			component: () => import(/* webpackChunkName: "index" */ '@/views/home/index'),
-            name: 'root',
             meta:{
                 title: '智能管理平台'
             }
