@@ -113,7 +113,6 @@
             append-to-body
             v-mocDialogDrag
             custom-class="moc-dialog-fixed"
-            destroy-on-close
         >
             <table-dialog :groupId="new Date().getTime()" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
             <template #footer>
