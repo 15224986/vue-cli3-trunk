@@ -29,7 +29,10 @@ $bgColor: #f1f1f1 !default;
 // 主色调
 $mainColor: #409EFF !default;
 // 文字颜色
-$textColor: #444444 !default;
+$mainTextColor: #333333 !default;		// 主要文字
+$textColor: #666666 !default;			// 常规文字
+$seconTextColor: #888888 !default;		// 次要文字
+$placeholderColor: #aaaaaa !default;	// 占位文字
 // 描边颜色
 $borColor: #EBEEF5 !default;
 
