@@ -202,6 +202,8 @@
         },
         created(){
             this.initOptions();
+            this.inintData();
+
         },
         mounted () {
 
@@ -212,7 +214,13 @@
              */
             inintData(){
                 console.log('初始化弹框数据', this.groupId)
-                this.calcTableHeight();
+                const item = {
+                	date: '20160502000000',
+                	name: '王小虎',
+                	address: '上海市普陀区金沙江路 1518 弄'
+                };
+                let arr = Array(20).fill(item);
+                this.tableData = this.tableData.concat(arr)
             },
             /**
              * 搜索事件
