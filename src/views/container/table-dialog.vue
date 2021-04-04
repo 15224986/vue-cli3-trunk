@@ -156,7 +156,7 @@
                  * 表格
                  */
                 calcTableHeightDom:"#project-dialog-table",
-				tableData: Array(20).fill(item),
+				tableData: [],
                 options:{
                     region:[
                         {
@@ -203,7 +203,6 @@
         created(){
             this.initOptions();
             this.inintData();
-
         },
         mounted () {
 
@@ -214,13 +213,15 @@
              */
             inintData(){
                 console.log('初始化弹框数据', this.groupId)
+
                 const item = {
                 	date: '20160502000000',
                 	name: '王小虎',
                 	address: '上海市普陀区金沙江路 1518 弄'
                 };
-                let arr = Array(20).fill(item);
-                this.tableData = this.tableData.concat(arr)
+                this.tableData = this.tableData.concat(Array(20).fill(item))
+
+                console.log(this.tableData)
             },
             /**
              * 搜索事件
