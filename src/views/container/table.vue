@@ -259,22 +259,18 @@
 
             testAssignCloneDeep(){
                 /**
-                 * 合并参数的时候，如果被合并的对象里面存在arr、obj等，需要使用深层复制，才可以对参数进行修改
-                 *
-                 * 如果项目中引用了 lodash 插件库，则不需要自己写的 深层复制等，合并等方法
+                 * assign 和 展开运算符(...) 属于浅层  不会处理原型链上的属性，也不会合并相同的属性，而是用后面的属性值覆盖前面的属性值
+                 * merge 遇到相同属性名的时候，如果属性值是纯对象或集合的时候，会合并属性值
                  */
-                // let params = this.$merge( this.$deepCopy(this.search), this.pagination, this.pagination2);
-                // let params = {...this.$deepCopy(this.search), ...this.pagination, ...this.pagination2};
-                // let params = {...this.$lodash.cloneDeep(this.search), ...this.pagination, ...this.pagination2};
-                // let params = this.$lodash.assign(this.$lodash.cloneDeep(this.search), this.pagination, this.pagination2);
+                // let newObj = { ...{ a:1 }, ...{ b: { c: 2, d: 3 } }, ...{ b: { e: 4 } } }
+                // let newObj = this.$lodash.assign({ a:1 }, { b: { c: 2, d: 3 } }, { b:{e: 4}} )
+                let newObj = this.$lodash.merge({ a:1 },{b:{c:2,d:3}},{b:{e:4}})
+                console.log(newObj)
+
                 let params = this.$lodash.merge(this.$lodash.cloneDeep(this.search), this.pagination, this.pagination2);
                 delete params.total;
                 params.arr.push('a','b','c');
                 console.log( params, this.search );
-                let diei = null
-                console.log( this.$lodash.isArray(diei) );
-                let diei2 = Object.create(null);
-                console.log( diei2 );
             },
             /**
              * 搜索事件
