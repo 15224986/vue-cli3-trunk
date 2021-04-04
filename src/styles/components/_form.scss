@@ -85,7 +85,11 @@
  *
  */
 .project-form-horizontal{
-
+	.el-select,
+	.el-date-editor.el-input,
+	.el-date-editor.el-input__inner{
+		width: 100%;
+	}
 }
 
 
@@ -114,7 +118,7 @@
  *
  */
 .project-form-text{
-	color: #666666;
+	color: $seconTextColor;
 	&.el-tooltip{
 		@include text-overflow;
 	}
