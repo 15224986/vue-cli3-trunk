@@ -220,7 +220,7 @@ $lte8: true !default;
 }
 
 // 提示文字的颜色浏览器统一
-@mixin placeholder($color:#aaaaaa){
+@mixin placeholder($color:$placeholderColor){
     &::-moz-placeholder           {
         color: $color;
     }
