@@ -46,7 +46,7 @@ body,
 /**
  * 主体部分
  */
-#page-content{
+#page-container{
 	overflow: hidden;
 	background-color: $bgColor;
 }
@@ -90,11 +90,14 @@ body,
 /**
  * section 模块的调整
  */
-.project-form,
-.project-search,
-.project-table{
-	margin-bottom: 0;
+#page-content{
+	.project-form,
+	.project-search,
+	.project-table{
+		margin-bottom: 0;
+	}
 }
+
 .project-btns{
 	text-align: right;
 }
@@ -104,28 +107,26 @@ body,
 
 .el-dialog__body{
 	.project-form{
-		margin-bottom: 20px;
+		margin:10px;
+	}
+	.project-search,
+	.project-table,
+	.project-pagination{
+		margin: 0 10px;
 	}
 }
 
 
 
-#assets{
-	.moc-container-section{
-		background-color: #FFFFFF;
-	}
-	.project-toolbar{
-		background-color: transparent;
-	}
-	.project-table {
-		& > .moc-container-section-inner{
-			width: calc(100% - 40px);
-			height: 100%;
-			position: absolute;
-			left: 20px;
-		}
-	}
-}
+
+
+
+
+
+
+
+
+
 
 
 
