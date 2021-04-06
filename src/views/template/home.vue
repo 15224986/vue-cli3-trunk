@@ -1,8 +1,7 @@
 <template>
     <el-container id="page-bodier">
-        <el-main id="page-content">
-            <moc-container>
-
+        <el-main id="page-container">
+            <moc-container id="page-content">
                 <moc-section>
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
