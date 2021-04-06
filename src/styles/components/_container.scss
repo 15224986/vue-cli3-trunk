@@ -81,3 +81,51 @@
 
 
 
+
+
+// **************************** flex-box 盒布局的样式 **********************************
+.moc-flex{
+	height: 100%;
+	@include displayFlex;
+	@include boxOrient;
+}
+.moc-flex-horizontal{
+	height: 100%;
+    @include displayFlex;
+    @include boxOrient($orient:horizontal);
+}
+.moc-flex-bodier{
+    position: relative;
+    @include displayFlexNumber;
+}
+.moc-flex-bodier-inner{
+    @include box-inner;
+}
+// 结束
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
