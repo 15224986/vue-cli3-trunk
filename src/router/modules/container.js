@@ -16,6 +16,14 @@ export default [
         }
     },
     {
+        path: 'flex',
+        name: 'flexPage',
+        component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/flex'),
+        meta: {
+            title: '弹性盒模型'
+        }
+    },
+    {
         path: 'form',
         name: 'formPage',
         component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/form'),
