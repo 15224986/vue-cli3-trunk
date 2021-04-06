@@ -20,6 +20,10 @@
                     <i class="el-icon-s-order"></i>
                     <span slot="title">表格</span>
                 </el-menu-item>
+                <el-menu-item index="/contianer/flex">
+                    <i class="el-icon-s-order"></i>
+                    <span slot="title">flex 布局</span>
+                </el-menu-item>
                 <el-menu-item index="/contianer/form">
                     <i class="el-icon-s-claim"></i>
                     <span slot="title">表单</span>
