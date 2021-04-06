@@ -12,8 +12,7 @@ Vue.use(Router);
 /**
  * 引入页面模块
  */
-import container from './modules/container'
-import assets from './modules/assets'
+import template from './modules/template'
 
 const router = new Router({
 	// mode: 'history',
@@ -27,24 +26,17 @@ const router = new Router({
 		{
 			path: '/home',
             name: 'home',
-			component: () => import(/* webpackChunkName: "index" */ '@/views/home/index'),
+			component: () => import(/* webpackChunkName: "template" */ '@/views/template/home'),
             meta:{
                 title: '智能管理平台'
             }
 		},
         {
-            path: '/contianer',
-            name: 'contianer',
-            component: () => import(/* webpackChunkName: "contianer" */ '@/views/container/index'),
-        	redirect: '/contianer/table',
-        	children: container
-        },
-        {
-            path: '/assets',
-            name: 'assets',
-            component: () => import(/* webpackChunkName: "assets" */ '@/views/assets/index'),
-        	redirect: '/assets/standard',
-        	children: assets
+            path: '/template',
+            name: 'template',
+            component: () => import(/* webpackChunkName: "template" */ '@/views/template/index'),
+        	redirect: '/template/table',
+        	children: template
         }
 	]
 });
