@@ -9,7 +9,7 @@
         :placeholder="placeholder"
         @change='selectAll'
     >
-        <el-option label="全选" value="all-selected-neusoft"></el-option>
+        <el-option label="全选" value="all-selected-neusoft" v-if="selectOptions.length>0"></el-option>
         <el-option
             v-for="(item, index) in selectOptions"
             :key="index"
