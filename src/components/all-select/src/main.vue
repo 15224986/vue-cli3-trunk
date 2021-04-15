@@ -9,7 +9,7 @@
         :placeholder="placeholder"
         @change='selectAll'
     >
-        <el-option label="全选" value="all-selected-neusoft" v-if="selectOptions.length>0"></el-option>
+        <el-option label="全选" value="all-selected-null" v-if="selectOptions.length>0"></el-option>
         <el-option
             v-for="(item, index) in selectOptions"
             :key="index"
@@ -77,12 +77,20 @@ export default {
         selectData:function (nData, oData) {
             this.chooseData = nData;
             this.oldChooseData = nData.length > 0 ? nData : [];
+
+            if(  nData.length > 0 && nData.length === this.selectOptions.length && !nData.includes('all-selected-null') ){
+                this.chooseData.unshift('all-selected-null');
+            }
+        },
+        selectOptions:{
+            deep: true,         // 该回调会在任何被侦听的对象的 property 改变时被调用，不论其被嵌套多深
+            immediate: true,    // 该回调将会在侦听开始之后被立即调用
+            handler: function(nData, oData){
+                if( nData.length > 0 && nData.length === this.chooseData.length && !this.chooseData.includes('all-selected-null') ){
+                    this.chooseData.unshift('all-selected-null');
+                }
+            }
         }
-    },
-    mounted() {
-        if( this.chooseData.length > 0 ){
-			this.selectAll(this.chooseData);
-		}
     },
     methods: {
 		selectAll (val) {
@@ -93,12 +101,12 @@ export default {
                     allValues.push( item.value );
                 }
             });
-            allValues.unshift('all-selected-neusoft');
+            allValues.unshift('all-selected-null');
 			// 用来储存上一次选择的值，可进行对比
 			const oldVal = this.oldChooseData.length > 0 ? this.oldChooseData : [];
 
             // 若选择全部
-            if ( val.includes('all-selected-neusoft') ) {
+            if ( val.includes('all-selected-null') ) {
                 // 判断当前列表中除了全选之外是否还有其他选项
                 if( allValues.length>1 ){
                     this.chooseData = allValues;
@@ -108,22 +116,22 @@ export default {
             }
 
 			// 取消全部选中， 上次有， 当前没有， 表示取消全选
-			if (oldVal.includes('all-selected-neusoft') && !val.includes('all-selected-neusoft')) {
+			if (oldVal.includes('all-selected-null') && !val.includes('all-selected-null')) {
 				this.chooseData = [];
 			}
 
 			// 点击非全部选中，需要排除全部选中 以及 当前点击的选项
 			// 新老数据都有全部选中
-			if (oldVal.includes('all-selected-neusoft') && val.includes('all-selected-neusoft')) {
-				const index = val.indexOf('all-selected-neusoft');
+			if (oldVal.includes('all-selected-null') && val.includes('all-selected-null')) {
+				const index = val.indexOf('all-selected-null');
 				val.splice(index, 1); // 排除全选选项
 				this.chooseData = val;
 			}
 
 			// 全选未选，但是其他选项都全部选上了，则全选选上
-			if (!oldVal.includes('all-selected-neusoft') && !val.includes('all-selected-neusoft')) {
+			if (!oldVal.includes('all-selected-null') && !val.includes('all-selected-null')) {
 				if ( allValues.length > 1 && val.length === allValues.length - 1 ) {
-					this.chooseData = ['all-selected-neusoft'].concat(val);
+					this.chooseData = ['all-selected-null'].concat(val);
 				}
 			}
 
