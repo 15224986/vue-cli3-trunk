@@ -3,12 +3,24 @@ export default {
         /**
          * 表格对应select格式化
          */
-        selectFormatter( key, data ){
-            for (let i=0; i<data.length; i++){
-            	let item = data[i];
-                if( key == item.value ){
-                    return item.label
+        selectFormatter( value, options, type ){
+            if( type === "array" ){
+                if( !Array.isArray(value) ){
+                    value = value.split(',')
                 }
+                let valueText = [];
+                options.forEach(element => {
+                    if( value.includes(element.value) ){
+                        valueText.push( element.label )
+                    }
+                });
+                return valueText.join()
+            }else{
+                options.forEach(element => {
+                    if( value === element.value ){
+                        return element.label
+                    }
+                });
             }
         },
 		/**
