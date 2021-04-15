@@ -39,6 +39,12 @@
                     >
                     </moc-all-select>
                 </el-form-item>
+                <el-form-item label="单选下拉值">
+                   <p class="project-form-text">{{ search.region | selectFormatter(options.region) }}</p>
+                </el-form-item>
+                <el-form-item label="多选下拉值">
+                    <p class="project-form-text">{{ search.region2 | selectFormatter(options.region, 'array') }}</p>
+                </el-form-item>
                 <el-form-item label="日期选择">
                     <el-date-picker
                         v-model="search.date"
@@ -170,8 +176,8 @@
                  */
                 search: {
                     user: '1',
-                    region: '2',
-                    region2: '',
+                    region: '选项3',
+                    region2: ['选项1', '选项3'],
                     date: '',
                     datetime: '',
                     checkTime: '',
