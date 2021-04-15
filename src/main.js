@@ -110,7 +110,6 @@ Vue.prototype.$global = Global
 
 /**
  * 自定义工具
- * 案例： home/directiveFilters
  */
 // import toBoolean from "@/utils/toBoolean.js";
 // Vue.prototype.$toBoolean = toBoolean;
@@ -118,7 +117,6 @@ Vue.prototype.$global = Global
 
 /**
  * 全局指令
- * 案例： home/directiveFilters
  */
 import * as directives from '@/directives'
 // 注册指令
@@ -130,10 +128,10 @@ Object.keys(directives).forEach(k => {
 /**
  * 全局过滤器
  */
-// import * as filters from './filters/index.js' // global filters
-// Object.keys(filters).forEach(key => {
-// 	Vue.filter(key, filters[key]);
-// })
+import * as filters from './filters/index.js' // global filters
+Object.keys(filters).forEach(key => {
+	Vue.filter(key, filters[key]);
+})
 
 
 
