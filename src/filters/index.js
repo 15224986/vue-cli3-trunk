@@ -16,11 +16,12 @@ export function selectFormatter(value, options, type) {
         });
         return valueText.join()
     }else{
-        options.forEach(element => {
-            if( value === element.value ){
-                return element.label
+        for (let i=0; i<options.length; i++){
+            let item = options[i];
+            if( value == item.value ){
+                return item.label
             }
-        });
+        }
     }
 }
 
