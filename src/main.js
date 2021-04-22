@@ -53,12 +53,6 @@ import * as lodash from "lodash";
 Vue.prototype.$lodash = lodash;
 
 
-/**
- * 全局moment
- * 日期处理类库
- */
-import moment from 'moment'
-Vue.prototype.$moment = moment;
 
 
 
