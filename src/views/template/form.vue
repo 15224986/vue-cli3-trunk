@@ -11,14 +11,103 @@
 
         <moc-section class="project-form">
             <p>典型表单</p>
-            <el-form ref="formHorizontal" :model="form" label-width="80px" class="moc-form-horizontal">
-                <el-form-item v-for="item in conts" :key="item" label="活动名称">
-                    <el-input v-model="form.name"></el-input>
-                </el-form-item>
+            <el-form ref="formHorizontal" :model="form" label-width="100px" class="project-form-horizontal" label-suffix="：">
+                <el-row>
+                    <el-col :span="6">
+                        <el-form-item label="活动名称">
+                            <el-input v-model="form.name"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="活动名称">
+                            <el-select
+                                v-model="form.region"
+                                placeholder="活动区域"
+                                filterable
+                                clearable
+                            >
+                                <el-option
+                                    v-for="(item, index) in options.region"
+                                    :key="index"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="活动名称">
+                            <el-date-picker
+                                v-model="form.date"
+                                placeholder="任意日期">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="活动名称">
+                            <el-date-picker
+                                v-model="form.checkTime"
+                                type="datetimerange"
+                                value-format="yyyyMMddHHmmss"
+                                range-separator="至"
+                                start-placeholder="开始时间"
+                                end-placeholder="结束时间"
+                                :default-time="['00:00:00', '23:59:59']"
+                                :picker-options="$global.datePickerOptions"
+                            >
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
             </el-form>
             <p>行内表单</p>
-            <el-form ref="formInline" :model="form" label-width="80px" :inline="true" class="moc-form-inline">
-                <el-form-item v-for="item in conts" :key="item" label="活动名称">
+            <el-form ref="formInline" :model="form" label-width="100px" :inline="true" class="project-form-inline" label-suffix="：">
+                <el-form-item label="活动名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="活动名称">
+                    <el-select
+                        v-model="form.region"
+                        placeholder="活动区域"
+                        filterable
+                        clearable
+                    >
+                        <el-option
+                            v-for="(item, index) in options.region"
+                            :key="index"
+                            :label="item.label"
+                            :value="item.value"
+                            :disabled="item.disabled"
+                        >
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="活动名称">
+                    <el-date-picker
+                        v-model="form.date"
+                        placeholder="任意日期">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="活动名称">
+                    <el-date-picker
+                        v-model="form.checkTime"
+                        type="daterange"
+                        value-format="yyyyMMddHHmmss"
+                        range-separator="至"
+                        start-placeholder="开始时间"
+                        end-placeholder="结束时间"
+                        :default-time="['00:00:00', '23:59:59']"
+                        :picker-options="$global.datePickerOptions"
+                    >
+                    </el-date-picker>
+                </el-form-item>
+            </el-form>
+
+            <p>作为撑起高度的填充物</p>
+            <el-form ref="formHorizontal" :model="form" label-width="100px" class="project-form-horizontal" label-suffix="：">
+                <el-form-item label="活动名称" v-for="item in 20" :key="item">
                     <el-input v-model="form.name"></el-input>
                 </el-form-item>
             </el-form>
@@ -44,10 +133,35 @@
                 /**
                  * 表单
                  */
-                conts: 20,
+                conts: 2,
                 form:{
-                    name:''
-                }
+                    name:'',
+                    region:'',
+                    date:'',
+                    checkTime: '',
+                },
+
+                options:{
+                    region:[
+                        {
+                            label: '黄金糕',
+                            value: '选项1'
+                        },
+                        {
+                            label: '双皮奶',
+                            value: '选项2',
+                            disabled: true
+                        },
+                        {
+                            label: '蚵仔煎',
+                            value: '选项3'
+                        },
+                        {
+                            label: '蚵仔煎',
+                            value: '选项4'
+                        }
+                    ]
+                },
 			}
         },
         created(){
