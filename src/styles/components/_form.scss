@@ -1,25 +1,6 @@
 @charset "utf-8";
 
-/**
- * 行内表单 设置宽度
- */
-.el-form--inline{
-	@for $i from 0 through 80 {
-		&.content-width-#{$i*10},
-		.el-form-item.content-width-#{$i*10}{
-			.el-input,
-			.project-form-text,
-			.el-input-number {
-				width: #{$i*10}px;
-			}
-			.el-date-editor--daterange.el-input__inner,
-			.el-date-editor--datetimerange.el-input__inner,
-			.el-date-editor--monthrange.el-input__inner{
-				width: #{$i*20}px;
-			}
-		}
-	}
-}
+
 
 
 /**
@@ -33,8 +14,13 @@
 .project-form-label-static{
 	padding: 0 10px;
 }
-
-
+// 查看详情 显示文字组件
+.project-form-text{
+	color: #666666;
+	&.el-tooltip{
+		@include text-overflow;
+	}
+}
 
 
 
