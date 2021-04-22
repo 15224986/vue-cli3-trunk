@@ -19,12 +19,64 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 }
 
 
+
+
+
+// **************************** el-select el-date-picker **********************************
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner,
+.el-select {
+    width: 100%;
+}
+
+.el-date-editor--daterange,
+.el-date-editor--monthrange,
+.el-date-editor--datetimerange{
+	.el-range-separator{
+		width: 24px;
+	}
+	.el-range-input{
+		width: calc(50% - 36px);
+	}
+}
+
+// **************************** 行内表单 设置宽度 **********************************
+.el-form--inline{
+	.el-input,
+	.el-input__inner{
+		width: 220px;
+	}
+	.el-date-editor--daterange.el-input__inner,
+	.el-date-editor--datetimerange.el-input__inner,
+	.el-date-editor--monthrange.el-input__inner{
+		width: 370px;
+	}
+	@for $i from 0 through 80 {
+		&.content-width-#{$i*10},
+		.el-form-item.content-width-#{$i*10}{
+			.el-input,
+			.project-form-text,
+			.el-input-number {
+				width: #{$i*10}px;
+			}
+			// .el-date-editor--daterange.el-input__inner,
+			// .el-date-editor--datetimerange.el-input__inner,
+			// .el-date-editor--monthrange.el-input__inner{
+			// 	width: #{$i*20-70}px;
+			// }
+		}
+	}
+}
+
+
+
 // **************************** el-table **********************************
 .el-table {
 	th {
 		background-color: #f5f7fa;
 	}
 }
+
 
 
 // **************************** el-dialog **********************************
