@@ -1,6 +1,6 @@
 <template>
     <el-dialog title="系统提示" :visible="visible" width="960px" fullscreen @close="onCancel()">
-        <moc-container>
+        <moc-container class="project-dialog-content">
             <moc-section class="project-form">
                 <p>典型验证</p>
                 <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="project-form-horizontal" label-suffix="：">
@@ -188,7 +188,7 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
-            
+
             initOptions(){
                 console.log('初始化固定数据')
             }
