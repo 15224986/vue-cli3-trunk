@@ -1,135 +1,152 @@
 <template>
-    <moc-container id="page-content" flex>
-        <moc-section class="project-breadcrumb">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
-                <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-            </el-breadcrumb>
-        </moc-section>
-        <moc-section class="project-search">
-            <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
-                <el-form-item label="输入框">
-                    <el-input v-model="search.user" clearable placeholder="审批人"></el-input>
-                </el-form-item>
-                <el-form-item label="单选下拉">
-                    <el-select
-                        v-model="search.region"
-                        placeholder="活动区域"
-                        filterable
-                        clearable
-                    >
-                        <el-option
-                            v-for="(item, index) in options.region"
-                            :key="index"
-                            :label="item.label"
-                            :value="item.value"
-                            :disabled="item.disabled"
+    <article id="page-container">
+        <moc-container id="page-content" flex>
+            <moc-section class="project-breadcrumb">
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                </el-breadcrumb>
+            </moc-section>
+            <moc-section class="project-search">
+                <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
+                    <el-form-item label="输入框">
+                        <el-input v-model="search.user" clearable placeholder="审批人"></el-input>
+                    </el-form-item>
+                    <el-form-item label="单选下拉">
+                        <el-select
+                            v-model="search.region"
+                            placeholder="活动区域"
+                            filterable
+                            clearable
                         >
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="多选下拉">
-                    <moc-all-select
-                        v-model="search.region2"
-                        :selectOptions="options.region"
-                        filterable
-                        clearable
-                    >
-                    </moc-all-select>
-                </el-form-item>
-                <el-form-item label="单选下拉值">
-                   <p class="project-form-text">{{ search.region | selectFormatter(options.region) }}</p>
-                </el-form-item>
-                <el-form-item label="多选下拉值">
-                    <p class="project-form-text">{{ search.region2 | selectFormatter(options.region, 'array') }}</p>
-                </el-form-item>
-                <el-form-item label="日期选择">
-                    <el-date-picker
-                        v-model="search.date"
-                        placeholder="任意日期">
-                    </el-date-picker>
-                </el-form-item>
-                <el-form-item label="时间段选择">
-                    <el-date-picker
-                        v-model="search.checkTime"
-                        type="datetimerange"
-                        value-format="yyyyMMddHHmmss"
-                        range-separator="至"
-                        start-placeholder="开始时间"
-                        end-placeholder="结束时间"
-                        :default-time="['00:00:00', '23:59:59']"
-                        :picker-options="$global.datePickerOptions"
-                    >
-                    </el-date-picker>
-                </el-form-item>
-                <el-form-item class="project-search-btns">
-                    <el-button @click="onSearch()" type="primary">查询</el-button>
-                    <el-button @click="testAssignCloneDeep()" type="primary">测试扩展运算符和复杂数据深层复制</el-button>
-                    <el-button @click="tableDialogShow()" type="primary">table 弹出框</el-button>
-                    <el-button @click="formDialogShow()" type="primary">form 弹出框</el-button>
-                </el-form-item>
-            </el-form>
-        </moc-section>
-        <moc-section id="project-table" bodier class="project-table">
-            <!-- <template #header>
-                <p>class里面的project为项目名称</p>
-            </template> -->
-            <el-table
-                :data="tableData"
-                :height="tableHeight"
-                v-loading="tableLoading"
-                border
-                stripe
+                            <el-option
+                                v-for="(item, index) in options.region"
+                                :key="index"
+                                :label="item.label"
+                                :value="item.value"
+                                :disabled="item.disabled"
+                            >
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="多选下拉">
+                        <moc-all-select
+                            v-model="search.region2"
+                            :selectOptions="options.region"
+                            filterable
+                            clearable
+                        >
+                        </moc-all-select>
+                    </el-form-item>
+                    <el-form-item label="单选下拉值">
+                       <p class="project-form-text">{{ search.region | selectFormatter(options.region) }}</p>
+                    </el-form-item>
+                    <el-form-item label="多选下拉值">
+                        <p class="project-form-text">{{ search.region2 | selectFormatter(options.region, 'array') }}</p>
+                    </el-form-item>
+                    <el-form-item label="日期选择">
+                        <el-date-picker
+                            v-model="search.date"
+                            placeholder="任意日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="时间段选择">
+                        <el-date-picker
+                            v-model="search.checkTime"
+                            type="datetimerange"
+                            value-format="yyyyMMddHHmmss"
+                            range-separator="至"
+                            start-placeholder="开始时间"
+                            end-placeholder="结束时间"
+                            :default-time="['00:00:00', '23:59:59']"
+                            :picker-options="$global.datePickerOptions"
+                        >
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item class="project-search-btns">
+                        <el-button @click="onSearch()" type="primary">查询</el-button>
+                        <el-button @click="testAssignCloneDeep()" type="primary">测试扩展运算符和复杂数据深层复制</el-button>
+                        <el-button @click="tableDialogShow()" type="primary">table 弹出框</el-button>
+                        <el-button @click="tableDialogShow2()" type="primary">table2 弹出框</el-button>
+                        <el-button @click="formDialogShow()" type="primary">form 弹出框</el-button>
+                    </el-form-item>
+                </el-form>
+            </moc-section>
+            <moc-section id="project-table" bodier class="project-table">
+                <!-- <template #header>
+                    <p>class里面的project为项目名称</p>
+                </template> -->
+                <el-table
+                    :data="tableData"
+                    :height="tableHeight"
+                    v-loading="tableLoading"
+                    border
+                    stripe
+                >
+                    <el-table-column label="序号" type="index" :index="handleIndex" :width="tableIndexWidth" align="center" class-name="neu-table-index"></el-table-column>
+                    <el-table-column label="日期" prop="date" width="218" :formatter="dateFormatter"></el-table-column>
+                    <el-table-column label="姓名" prop="name" width="186"></el-table-column>
+                    <el-table-column label="性别" prop="sex" width="112"></el-table-column>
+                    <el-table-column label="年龄" prop="age" width="112"></el-table-column>
+                    <el-table-column label="爱好" prop="like" width="112" :formatter="(row, column, cellValue) => selectFormatter(cellValue, options.like)"></el-table-column>
+                    <el-table-column label="地址" prop="address" min-width="256"></el-table-column>
+                </el-table>
+                <!-- <template #footer>
+                    <p style="padding: 6px;">class里面的project为项目名称</p>
+                </template> -->
+            </moc-section>
+            <moc-section class="project-pagination">
+                <el-pagination
+                    :current-page.sync="pagination.current"
+                    :page-size.sync="pagination.size"
+                    @current-change="initTableData()"
+                    @size-change="initTableData()"
+                    :total="pagination.total"
+                    :layout="$global.paginationLayout"
+                    :page-sizes="$global.paginationSizes"
+                    background
+                >
+                </el-pagination>
+            </moc-section>
+
+
+            <!-- 弹出框 -->
+            <el-dialog
+                title="建议这样使用，下面的例子destroy-on-close属性无法使用"
+                :visible.sync="tableDialogVisible"
+                width="88%"
+                top="50px"
+                append-to-body
+                v-mocDialogDrag
+                custom-class="moc-dialog-fixed"
             >
-                <el-table-column label="序号" type="index" :index="handleIndex" :width="tableIndexWidth" align="center" class-name="neu-table-index"></el-table-column>
-                <el-table-column label="日期" prop="date" width="218" :formatter="dateFormatter"></el-table-column>
-                <el-table-column label="姓名" prop="name" width="186"></el-table-column>
-                <el-table-column label="性别" prop="sex" width="112"></el-table-column>
-                <el-table-column label="年龄" prop="age" width="112"></el-table-column>
-                <el-table-column label="爱好" prop="like" width="112" :formatter="(row, column, cellValue) => selectFormatter(cellValue, options.like)"></el-table-column>
-                <el-table-column label="地址" prop="address" min-width="256"></el-table-column>
-            </el-table>
-            <!-- <template #footer>
-                <p style="padding: 6px;">class里面的project为项目名称</p>
-            </template> -->
-        </moc-section>
-        <moc-section class="project-pagination">
-            <el-pagination
-                :current-page.sync="pagination.current"
-                :page-size.sync="pagination.size"
-                @current-change="initTableData()"
-                @size-change="initTableData()"
-                :total="pagination.total"
-                :layout="$global.paginationLayout"
-                :page-sizes="$global.paginationSizes"
-                background
+                <table-dialog :groupId="new Date().getTime()" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
+                <template #footer>
+                    <el-button @click="$refs.dialogTableTemplate.onSubmit()">取 消</el-button>
+                    <el-button @click="$refs.dialogTableTemplate.onCancel()" type="primary">确 定</el-button>
+                </template>
+            </el-dialog>
+            <el-dialog
+                title="自适应高度"
+                :visible.sync="tableDialogVisible2"
+                width="88%"
+                top="50px"
+                append-to-body
+                v-mocDialogDrag
             >
-            </el-pagination>
-        </moc-section>
+                <table-dialog-tp @after-callback="dialogCallback" ref="dialogTableTp"></table-dialog-tp>
+                <template #footer>
+                    <el-button @click="$refs.dialogTableTp.onSubmit()">取 消</el-button>
+                    <el-button @click="$refs.dialogTableTp.onCancel()" type="primary">确 定</el-button>
+                </template>
+            </el-dialog>
 
+            <form-dialog :visible="formDialogVisible" :groupId="new Date().getTime()" @after-callback="dialogCallback"></form-dialog>
 
-        <!-- 弹出框 -->
-        <el-dialog
-            title="建议这样使用，下面的例子destroy-on-close属性无法使用"
-            :visible.sync="tableDialogVisible"
-            width="88%"
-            top="50px"
-            append-to-body
-            v-mocDialogDrag
-            custom-class="moc-dialog-fixed"
-        >
-            <table-dialog :groupId="new Date().getTime()" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
-            <template #footer>
-                <el-button @click="$refs.dialogTableTemplate.onSubmit()">取 消</el-button>
-                <el-button @click="$refs.dialogTableTemplate.onCancel()" type="primary">确 定</el-button>
-            </template>
-        </el-dialog>
-
-        <form-dialog :visible="formDialogVisible" :groupId="new Date().getTime()" @after-callback="dialogCallback"></form-dialog>
-
-    </moc-container>
+        </moc-container>
+    </article>
 </template>
 <script>
 
@@ -159,6 +176,7 @@
         mixins:[ common, tableCommon, tableFormatter ],
         components: {
             tableDialog:()=>import('./table-dialog.vue'),
+            tableDialogTp:()=>import('./table-dialog-tp.vue'),
             formDialog:()=>import('./form-dialog.vue')
         },
         data () {
@@ -230,6 +248,7 @@
                  * 弹出框
                  */
                 tableDialogVisible: false,
+                tableDialogVisible2: false,
                 formDialogVisible: false
 			}
         },
@@ -237,7 +256,6 @@
             this.initOptions();
         },
         mounted () {
-
         },
         methods:{
             tableDialogShow(){
@@ -249,6 +267,9 @@
                     this.$refs.dialogTableTemplate.inintData()
                 }
             },
+            tableDialogShow2(){
+                this.tableDialogVisible2 = true;
+            },
             formDialogShow(){
                 /**
                  * 通过监听visible字段的变化进行初始化
@@ -257,6 +278,7 @@
             },
             dialogCallback(type){
                 this.tableDialogVisible = false;
+                this.tableDialogVisible2 = false;
                 this.formDialogVisible = false;
             },
 
