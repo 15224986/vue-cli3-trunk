@@ -1,5 +1,5 @@
 <template>
-    <moc-container flex>
+    <moc-container flex class="project-dialog-content">
         <moc-section class="project-search">
             <dl class="m-b-lg">
                 <dt>1.使用destroy-on-close的前提条件是传入dialog的必须是组件，而不是元素</dt>
