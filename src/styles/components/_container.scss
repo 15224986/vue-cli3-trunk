@@ -20,7 +20,124 @@ body,
 	background-color: $mainColor;
 }
 .moc-page-logo{
-	width: 220px;
+	width: 220px;@charset "utf-8";
+
+.moc-container{
+	&:not(.is-auto-height){
+		height: 100%;
+		overflow: auto;		
+	}
+	&.is-flex{
+		@include displayFlex;
+		@include boxOrient;
+		overflow: hidden;
+		&.is-horizontal{	
+			@include boxOrient('horizontal');
+		}	
+	}
+}
+.moc-container-section{
+	&.is-bodier{
+		@include displayFlexNumber;
+		position: relative;
+	}
+	>.moc-container-section-inner{
+		@include square(100%);
+		position: absolute;
+		left: 0;
+		top: 0;
+		overflow: auto;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+.moc-section-tabs{
+	margin: 10px;
+	margin-top: 0;
+	@include displayFlexNumber;
+	position: relative;
+	box-shadow: 0 0 0 0;
+	>.el-tabs__content{
+	    padding: 0;
+	    height: calc(100% - 39px);
+	    .el-tab-pane{
+	        height: 100%;
+	    }
+	}
+	.moc-container-section{
+	    margin-left: 0;
+	    margin-right: 0;
+	}
+	.project-search{
+		margin-top: 0;
+	}
+}
+
+.moc-container-tabs{
+	height: calc(100% - 22px);
+	margin: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 0 0;
+	>.el-tabs__content{
+	    padding: 0;
+	    height: calc(100% - 39px);
+	    .el-tab-pane{
+	        height: 100%;
+	    }
+	}
+	
+	.moc-container-section{
+	    margin-left: 0;
+	    margin-right: 0;
+	}
+	.project-toolbar{
+		padding-left: 20px;
+		margin-bottom: 0;
+	}
+}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	float: left;
 	color: #FFFFFF;
 	font-size: 24px;
