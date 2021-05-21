@@ -46,9 +46,12 @@ body,
 /**
  * 主体部分
  */
-#page-container{
+#page-main{
 	overflow: hidden;
 	background-color: $bgColor;
+}
+#page-container{
+	height: calc(100% - 40px);
 }
 
 
@@ -91,6 +94,13 @@ body,
  * section 模块的调整
  */
 #page-content{
+	> .moc-container-section{
+		margin: 10px;
+		margin-top: 0;
+		&:first-child{
+			margin-top: 10px;
+		}
+	}
 	.project-form,
 	.project-search,
 	.project-table{
@@ -105,19 +115,12 @@ body,
 	padding: 10px 20px 0;
 }
 
-.el-dialog__body{
-	.project-form{
-		margin:10px;
-	}
-	.project-search,
-	.project-table,
-	.project-pagination{
-		margin: 0 10px;
+.project-dialog-content{
+	padding: 20px;
+	&:not(.is-auto-height){
+		height: calc(100% - 40px);
 	}
 }
-
-
-
 
 
 
