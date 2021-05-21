@@ -1,7 +1,7 @@
 <template>
-	<article class="moc-container" :class="{'is-horizontal': horizontal, 'is-flex': flex}">
+	<div class="moc-container" :class="{'is-horizontal': horizontal, 'is-flex': flex, 'is-auto-height': autoHeight}">
         <slot></slot>
-    </article>
+    </div>
 </template>
 
 <script>
@@ -14,6 +14,10 @@
                 default: false
             },
             horizontal: {
+                type: Boolean,
+                default: false
+            },
+            autoHeight: {
                 type: Boolean,
                 default: false
             }
