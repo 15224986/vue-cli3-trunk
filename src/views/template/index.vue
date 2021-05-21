@@ -34,7 +34,8 @@
                 </el-menu-item>
     		</el-menu>
     	</el-aside>
-        <el-main id="page-container">
+        <el-main id="page-main">
+            <div style="line-height: 38px; text-align: center; background-color: #FFFFFF; border-bottom: #CCCCCC 2px solid;">这是tags-views标签页</div>
             <transition  name="stage-left-right" mode="out-in">
                 <router-view></router-view>
             </transition>
