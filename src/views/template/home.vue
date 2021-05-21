@@ -1,6 +1,7 @@
 <template>
+
     <el-container id="page-bodier">
-        <el-main id="page-container">
+        <el-main id="page-main">
             <moc-container id="page-content">
                 <moc-section>
                     <el-breadcrumb separator="/">
@@ -49,6 +50,7 @@
             </moc-container>
         </el-main>
     </el-container>
+
 </template>
 <script>
     /**
