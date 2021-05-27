@@ -13,6 +13,9 @@
 			@include boxOrient('horizontal');
 		}	
 	}
+	>.moc-container{
+		@include displayFlexNumber;
+	}
 }
 .moc-container-section{
 	&.is-bodier{
