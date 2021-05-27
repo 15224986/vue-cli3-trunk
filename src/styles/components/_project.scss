@@ -59,6 +59,7 @@ body,
  * 左导航
  */
 #page-sidebar{
+	background-color: $mainColor;
 	.el-menu-vertical-demo:not(.el-menu--collapse) {
 		width: 220px;
 	}
@@ -74,9 +75,8 @@ body,
 		right: 17px;
 		top: 5px;
 		cursor: pointer;
-		background-color: #F1F1F1;
 		font-size: 20px;
-		color: $textColor;
+		color: #FFFFFF;
 		line-height: 30px;
 		font-weight: 400;
 		text-align: center;
@@ -85,6 +85,47 @@ body,
 			transform: rotate(180deg);
 		}
 	}
+	
+	.el-menu{
+		background-color: $mainColor;
+	}
+	.el-menu-item,
+	.el-submenu__title {
+		height: 44px;
+		line-height: 44px;
+	}
+	.el-menu-item{
+		color: #FFFFFF;
+		&:hover,
+		&:focus,
+		&.is-active{
+			outline: none;
+			background-color: $mainColorActive;
+		}
+		i{
+			color: #FFFFFF;
+		}
+	}
+	.el-submenu [class^="el-icon-"]{
+		width: 18px;
+	}
+	.el-submenu__title{
+		background-color: $mainColor;
+		color: #FFFFFF;
+	}
+	.el-submenu__title:hover{
+		background-color: $mainColorActive;
+	}
+	.el-menu-item-group{
+		background-color: $mainColor;
+	}
+	.is-opened.is-active{
+		.el-submenu__title{
+			color: #FFFFFF;
+			background-color: $mainColorActive;
+		}
+	}
+
 }
 
 
@@ -107,14 +148,48 @@ body,
 		margin-bottom: 0;
 	}
 }
-
+.moc-container-section{
+	background-color: #FFFFFF;
+}
 .project-btns{
 	text-align: right;
+	padding: 20px;
+}
+.project-toolbar{
+	background-color: rgba(#000000, 0);
 }
 .project-search{
 	padding: 10px 20px 0;
 }
+.project-table{
+	>.moc-container-section-inner{
+		width: calc(100% - 20px);
+		left: 10px;
+	}
+}
+.project-form-page,
+.project-form{
+	padding: 20px 20px 0 20px;
+}
 
+
+.project-page-title{
+	padding: 10px;
+	font-size: 20px;
+	line-height: 30px;
+	margin-bottom: 0 !important;
+	a{
+		color: $mainTextColor;
+	}
+}
+
+
+
+.project-group-tree{
+	margin: 10px 0 10px 10px;
+	width: 220px;
+	background-color: $sectionColor;
+}
 .project-dialog-content{
 	padding: 20px;
 	&:not(.is-auto-height){
