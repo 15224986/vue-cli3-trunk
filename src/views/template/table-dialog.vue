@@ -90,11 +90,11 @@
         </moc-section>
         <moc-section class="project-pagination">
             <el-pagination
-                :current-page.sync="pagination.current"
-                :page-size.sync="pagination.size"
+                :current-page.sync="search.current"
+                :page-size.sync="search.size"
                 @current-change="initTableData()"
                 @size-change="initTableData()"
-                :total="pagination.total"
+                :total="tableTotal"
                 :layout="$global.paginationLayout"
                 :page-sizes="$global.paginationSizes"
                 background
@@ -151,6 +151,10 @@
                         a:1,
                         b:22222
                     },
+
+                    // 分页器
+                    current: 1,             // 当前页
+                    size: 20                // 每页显示条数
                 },
                 /**
                  * 表格
@@ -227,7 +231,7 @@
              * 搜索事件
              */
             onSearch(){
-                this.pagination.current = 1;
+                this.search.current = 1;
                 this.initTableData();
             },
 
@@ -254,9 +258,8 @@
              * 初始化表格数据
              */
             initTableData() {
-                let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination };
-
-                this.pagination.total = this.tableData.length * 2
+                let params = { ...this.$lodash.cloneDeep(this.search) };
+                this.tableTotal = this.tableData.length * 2
             },
         }
     }
