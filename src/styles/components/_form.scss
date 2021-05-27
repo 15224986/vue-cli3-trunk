@@ -12,7 +12,7 @@
  */
 // 行内表单两个组件之间的分隔符，例：  开始时间 至 结束时间
 .project-form-label-static{
-	padding: 0 10px;
+	padding: 0 6px;
 }
 // 查看详情 显示文字组件
 .project-form-text{
@@ -110,7 +110,7 @@
 	}
 }
 .project-form-details{
-	.el-form-item--mini.el-form-item{
+	.el-form-item{
 		margin-bottom: 6px;
 	}
 }
