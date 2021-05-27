@@ -12,14 +12,9 @@ export default {
             calcTableHeightMinuend: 0,                  // 表格去除的高度
             tableHeight: 100,                           // 表格高度
 			tableIndexWidth: 56,                        // 表格序号列的宽度
-            /**
-             * 分页器
-             */
-            pagination: {
-                current: 1,             // 当前页
-                size: 20,               // 每页显示条数
-                total: 0,               // 总条数
-            },
+            
+            
+            tableTotal: 0,                              // 总条数
 		}
 	},
 	watch: {
@@ -27,8 +22,8 @@ export default {
          * 计算表格序号列的宽度
 		 * 监听总条数的变化
 		 */
-		"pagination.current": function (newVal, oldVal) {
-			let num = (this.pagination.current * this.pagination.size + '').toString().length;
+		"search.current": function (newVal, oldVal) {
+			let num = (this.search.current * this.search.size + '').toString().length;
 			this.tableIndexWidth = num*10+36;
 		}
 	},
@@ -49,7 +44,7 @@ export default {
 		 * 自定义索引
 		 */
 		handleIndex(index){
-			return ( this.pagination.current-1 ) * this.pagination.size + index + 1;
+			return ( this.search.current-1 ) * this.search.size + index + 1;
 		},
         /**
          * 计算表格的高度
