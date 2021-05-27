@@ -99,11 +99,11 @@
             </moc-section>
             <moc-section class="project-pagination">
                 <el-pagination
-                    :current-page.sync="pagination.current"
-                    :page-size.sync="pagination.size"
+                    :current-page.sync="search.current"
+                    :page-size.sync="search.size"
                     @current-change="initTableData()"
                     @size-change="initTableData()"
-                    :total="pagination.total"
+                    :total="tableTotal"
                     :layout="$global.paginationLayout"
                     :page-sizes="$global.paginationSizes"
                     background
@@ -204,6 +204,10 @@
                         a:1,
                         b:22222
                     },
+
+                    // 分页器
+                    current: 1,             // 当前页
+                    size: 20                // 每页显示条数
                 },
                 /**
                  * 表格
@@ -294,8 +298,7 @@
                 let newObj = this.$lodash.merge({ a:1 },{b:{c:2,d:3}},{b:{e:4}})
                 console.log(newObj)
 
-                let params = this.$lodash.merge(this.$lodash.cloneDeep(this.search), this.pagination, this.pagination2);
-                delete params.total;
+                let params = this.$lodash.merge(this.$lodash.cloneDeep(this.search), this.pagination2);
                 params.arr.push('a','b','c');
                 console.log( params, this.search );
             },
@@ -304,7 +307,7 @@
              */
             onSearch(){
                 console.log( this.search.region2 );
-                this.pagination.current = 1;
+                this.search.current = 1;
                 this.initTableData();
             },
             /**
@@ -345,10 +348,10 @@
              * 初始化表格数据
              */
             initTableData() {
-                let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination };
+                let params = { ...this.$lodash.cloneDeep(this.search), ...this.pagination2 };
                 // this.$http.get(`/mock/tableData`, params).then( res => {
                 //     this.tableData = res.table;
-                //     this.pagination = res.pagination;
+                //     this.tableTotal = res.total;
                 // })
                 // .catch( error => {
                 //     this.$message(error);
