@@ -40,33 +40,10 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 	}
 }
 
-// **************************** 行内表单 设置宽度 **********************************
-.el-form--inline{
-	.el-input{
-		width: 220px;
-	}
-	.el-date-editor--daterange.el-input__inner,
-	.el-date-editor--datetimerange.el-input__inner,
-	.el-date-editor--monthrange.el-input__inner{
-		width: 370px;
-	}
-	@for $i from 0 through 80 {
-		&.content-width-#{$i*10},
-		.el-form-item.content-width-#{$i*10}{
-			.el-input,
-			.project-form-text,
-			.el-input-number {
-				width: #{$i*10}px;
-			}
-			// .el-date-editor--daterange.el-input__inner,
-			// .el-date-editor--datetimerange.el-input__inner,
-			// .el-date-editor--monthrange.el-input__inner{
-			// 	width: #{$i*20-70}px;
-			// }
-		}
-	}
+// **************************** 表单 **********************************
+.el-form{
+	padding-bottom: 1px;
 }
-
 
 
 // **************************** el-table **********************************
