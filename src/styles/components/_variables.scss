@@ -26,12 +26,12 @@ $font-family:  "Microsoft YaHei", "SimSun", Arial, Helvetica, sans-serif !defaul
  */
 // 背景色
 $bgColor: #f1f1f1 !default;
+// 主色调
+$mainColor: #38506a !default;
+$mainColorActive: #15293b !default;
 // 模块色
 $sectionColor: #ffffff !default;	// 模块背景色
 $sectionHeader: #f5f7fa !default;	// 模块头部颜色
-// 主色调
-$mainColor: #409EFF !default;
-$mainColorActive: #2d71b6 !default;
 // 文字颜色
 $mainTextColor: #333333 !default;		// 主要文字
 $textColor: #666666 !default;			// 常规文字
@@ -39,8 +39,11 @@ $seconTextColor: #888888 !default;		// 次要文字
 $placeholderColor: #aaaaaa !default;	// 占位文字
 
 // 文字按钮的颜色
-$linkColor: #0fb2ee !default;	        // 链接按钮文字
+$linkColor: #409EFF !default;	        // 链接按钮文字
 $dangerColor: #F56C6C !default;	        // 危险按钮文字
+
+
+
 
 // 描边颜色
 $borColor: #EBEEF5 !default;
