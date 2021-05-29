@@ -2,12 +2,11 @@
 import mocContainer from './container/index.js';
 import mocContainerSection from './container-section/index.js';
 
-
 // element-ul Select 选择器 封装全选
 import mocAllSelect from './all-select/index.js';
 
-
-
+// element-ul tooltip 文字提示 不需要的弹框的
+import mocTooltip from './tooltip/index.js';
 
 
 
@@ -16,7 +15,8 @@ import mocAllSelect from './all-select/index.js';
 const components = [
     mocContainer,
     mocContainerSection,
-	mocAllSelect
+	mocAllSelect,
+    mocTooltip
 ]
 
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
@@ -41,5 +41,6 @@ export default install;
 export {
 	mocContainer,
 	mocContainerSection,
-	mocAllSelect
+	mocAllSelect,
+    mocTooltip
 };
