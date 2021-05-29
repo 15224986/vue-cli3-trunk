@@ -28,7 +28,7 @@
                     <el-button type="primary" plain>请假人员</el-button>
                 </moc-section>
                 <moc-section class="project-search">
-                    <el-form :model="search" :inline="true" label-width="90px" label-suffix="：" class="content-width-160">
+                    <el-form :model="search" :inline="true" label-width="90px" label-suffix="：" class="project-form-inline content-width-160">
                         <el-form-item label="姓名">
                             <el-input v-model="search.name" clearable placeholder="请输入"></el-input>
                         </el-form-item>
