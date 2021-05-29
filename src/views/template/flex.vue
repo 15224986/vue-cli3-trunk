@@ -1,8 +1,24 @@
+
 <template>
     <article id="page-container">
         <moc-container v-if="shwoPage==='page'" flex horizontal>
             <moc-section class="project-group-tree">
-                tree
+                <my-group-tree
+                    :groupTree="groupTree"
+                    title="分组"
+                    ref="myGroupTree"
+                    treeType="tag"
+                    showHeader
+                    nodeTools
+                    search
+                    appendRoot
+                    :props="defaultProps"
+                    :default-expanded-keys="['root']"
+                    @tree-node-click="treeNodeClick"
+                    @tree-node-deleted="treeNodeDeleted"
+                    @tree-node-rename="treeNodeRename"
+                    @add-append-node="addAppendNode"
+                ></my-group-tree>
             </moc-section>
             <moc-container id="page-content" flex>
                 <moc-section class="project-toolbar">
@@ -143,8 +159,9 @@
     export default {
         mixins:[ common, tableCommon, tableFormatter ],
         components: {
+            myGroupTree: () => import("@/views/components/group-tree/main.vue"),
             addForm:()=>import('./flex-add-form.vue'),
-            modifyDialog:()=>import('./flex-modify-dialog.vue'),
+            modifyDialog:()=>import('./flex-modify-dialog.vue')
         },
         data () {
 			return {
@@ -152,6 +169,36 @@
                  * 显示页面
                  */
                 shwoPage: 'page',
+
+
+                /**
+                 * 左侧菜单树
+                 */
+                defaultProps: {
+                    id: 'value',
+                    children: 'childs',
+                    label: 'name'
+                },
+                groupTree: [
+                    {
+                        value: 'root',
+                        name: '全部',
+                        childs:[
+                            {
+                                value: '11',
+                                name: '111'
+                            },
+                            {
+                                value: '22',
+                                name: '222'
+                            },
+                            {
+                                value: '33',
+                                name: '333'
+                            }
+                        ]
+                    }
+                ],
 
                 /**
                  * 搜索条件
@@ -196,6 +243,46 @@
             this.initOptions()
         },
         methods:{
+
+            /**
+             * 左侧树
+             */
+            treeNodeClick(data) {
+                if(data.value === "root"){
+                    this.search.groupId = 0
+
+                }else{
+                    if( !data.childs || data.childs.length==0 ){
+                        this.search.groupId = data.value
+                    }
+                }
+            },
+            treeNodeDeleted(data) {
+                this.$message.success('删除成功');
+                this.$refs.myGroupTree.removeTreeNode(data)
+
+                // this.$http.post('/business/delGroupList', data).then( res => {
+                //     this.$message.success('删除成功');
+                //     this.$refs.myGroupTree.removeTreeNode(data)
+                // });
+            },
+            treeNodeRename(data, val){
+                this.$message.success('改名成功');
+                this.$refs.myGroupTree.renameTreeNode(data,val)
+            },
+            addAppendNode(data) {
+                // console.log(data)
+                this.$message.success('添加成功');
+
+
+                // this.$http.post('/business/addGroupList', data).then( res => {
+                //     this.$message.success('添加成功');
+                //     this.initGroupList() //重新获取树的数据
+                // });
+
+            },
+
+
             /**
              * 新增、修改、删除
              */
