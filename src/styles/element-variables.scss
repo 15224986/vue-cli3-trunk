@@ -72,7 +72,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 // **************************** el-table **********************************
 .el-table {
 	th {
-		background-color: #f5f7fa;
+		background-color: $sectionHeader;
 	}
 }
 
@@ -83,13 +83,13 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 	padding: 0;
 }
 .el-dialog__header{
-	border-bottom: #DCDFE6 1px solid;
+	border-bottom: $borColor 1px solid;
 	padding: 14px 20px;
 }
 .el-dialog__headerbtn{
 	top: 17px;
 }
 .el-dialog__footer{
-	border-top: #DCDFE6 1px solid;
+	border-top: $borColor 1px solid;
 	padding: 14px 20px;
 }
