@@ -91,11 +91,11 @@
                         </moc-section>
                         <moc-section class="project-pagination">
                             <el-pagination
-                                :current-page.sync="pagination.current"
-                                :page-size.sync="pagination.size"
+                                :current-page.sync="search.current"
+                                :page-size.sync="search.size"
                                 @current-change="initTableData()"
                                 @size-change="initTableData()"
-                                :total="pagination.total"
+                                :total="tableTotal"
                                 :layout="$global.paginationLayout"
                                 :page-sizes="$global.paginationSizes"
                                 background
@@ -108,8 +108,6 @@
                 <el-tab-pane label="角色管理">角色管理</el-tab-pane>
                 <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
             </el-tabs>
-
-
         </moc-container>
     </article>
 </template>
@@ -156,7 +154,12 @@
                     region2: '',
                     date: '',
                     datetime: '',
-                    checkTime: ''
+                    checkTime: '',
+
+
+                    // 分页器
+                    current: 1,             // 当前页
+                    size: 20                // 每页显示条数
                 },
                 /**
                  * 表格
