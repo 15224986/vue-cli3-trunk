@@ -21,8 +21,26 @@
 		@include text-overflow;
 	}
 }
-
-
+// 表单标题
+.project-form-title{
+	position: relative;
+	height: 40px;
+	padding-left: 16px;
+	position: relative;
+	line-height: 40px;
+	font-size: 14px;
+	color: $mainTextColor;
+	&::before{
+		content: "";
+		display: block;
+		width: 3px;
+		height: 16px;
+		position: absolute;
+		top: 12px;
+		left: 7px;
+		background: $linkColor;
+	}
+}
 
 
 
@@ -44,7 +62,29 @@
  *
  */
 .project-form-inline{
-	
+	.el-input{
+		width: 220px;
+	}
+	.el-date-editor--daterange.el-input__inner,
+	.el-date-editor--datetimerange.el-input__inner,
+	.el-date-editor--monthrange.el-input__inner{
+		width: 370px;
+	}
+	@for $i from 0 through 80 {
+		&.content-width-#{$i*10},
+		.el-form-item.content-width-#{$i*10}{
+			.el-input,
+			.project-form-text,
+			.el-input-number {
+				width: #{$i*10}px;
+			}
+			// .el-date-editor--daterange.el-input__inner,
+			// .el-date-editor--datetimerange.el-input__inner,
+			// .el-date-editor--monthrange.el-input__inner{
+			// 	width: #{$i*20-70}px;
+			// }
+		}
+	}
 }
 
 
