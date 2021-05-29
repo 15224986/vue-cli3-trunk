@@ -1,13 +1,19 @@
 <template>
     <article id="page-container">
         <moc-container id="page-content" flex>
-            <moc-section class="project-breadcrumb">
+            <!-- <moc-section class="project-breadcrumb">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                     <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
                     <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
                     <el-breadcrumb-item>活动详情</el-breadcrumb-item>
                 </el-breadcrumb>
+            </moc-section> -->
+            <moc-section class="project-toolbar">
+                <el-button @click="testAssignCloneDeep()" type="primary" plain>测试扩展运算符和复杂数据深层复制</el-button>
+                <el-button @click="tableDialogShow()" type="primary" plain>table 弹出框</el-button>
+                <el-button @click="tableDialogShow2()" type="primary" plain>table2 弹出框</el-button>
+                <el-button @click="formDialogShow()" type="primary" plain>form 弹出框</el-button>
             </moc-section>
             <moc-section class="project-search">
                 <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
@@ -67,10 +73,6 @@
                     </el-form-item>
                     <el-form-item class="project-search-btns">
                         <el-button @click="onSearch()" type="primary">查询</el-button>
-                        <el-button @click="testAssignCloneDeep()" type="primary">测试扩展运算符和复杂数据深层复制</el-button>
-                        <el-button @click="tableDialogShow()" type="primary">table 弹出框</el-button>
-                        <el-button @click="tableDialogShow2()" type="primary">table2 弹出框</el-button>
-                        <el-button @click="formDialogShow()" type="primary">form 弹出框</el-button>
                     </el-form-item>
                 </el-form>
             </moc-section>
