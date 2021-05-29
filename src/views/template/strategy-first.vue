@@ -87,11 +87,11 @@
         </moc-section>
         <moc-section class="project-pagination">
             <el-pagination
-                :current-page.sync="pagination.current"
-                :page-size.sync="pagination.size"
+                :current-page.sync="search.current"
+                :page-size.sync="search.size"
                 @current-change="initTableData()"
                 @size-change="initTableData()"
-                :total="pagination.total"
+                :total="tableTotal"
                 :layout="$global.paginationLayout"
                 :page-sizes="$global.paginationSizes"
                 background
@@ -143,7 +143,14 @@
                     region2: '',
                     date: '',
                     datetime: '',
-                    checkTime: ''
+                    checkTime: '',
+
+
+
+
+                    // 分页器
+                    current: 1,             // 当前页
+                    size: 20                // 每页显示条数
                 },
                 /**
                  * 表格
