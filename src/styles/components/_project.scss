@@ -26,7 +26,7 @@ body,
 	font-size: 24px;
 	line-height: 60px;
 	text-align: center;
-	background-color: rgba(#000000, 0.15);
+	background-color: $mainColorActive;
 }
 .moc-page-nav {
 	float: left;
@@ -39,7 +39,7 @@ body,
 		line-height: 60px;
 		&:hover,
 		&.moc-active{
-			background-color: #2d71b6;
+			background-color: rgba($mainColorActive, 0.6);
 		}
 	}
 }
@@ -159,7 +159,7 @@ body,
 	background-color: rgba(#000000, 0);
 }
 .project-search{
-	padding: 10px 20px 0;
+	padding: 20px 20px 0;
 }
 .project-table{
 	>.moc-container-section-inner{
