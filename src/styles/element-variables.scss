@@ -22,13 +22,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 
 
-// **************************** el-select el-date-picker **********************************
-.el-date-editor.el-input,
-.el-date-editor.el-input__inner,
-.el-select {
-    width: 100%;
-}
-
+// **************************** el-date-picker **********************************
 .el-date-editor--daterange,
 .el-date-editor--monthrange,
 .el-date-editor--datetimerange{
