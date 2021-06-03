@@ -10,10 +10,19 @@
  * 
  * 
  */
-// 行内表单两个组件之间的分隔符，例：  开始时间 至 结束时间
-.project-form-label-static{
-	padding: 0 6px;
+// 数据段的样式
+.moc-form-range{
+	.el-input{
+		width: calc(50% - 16px) !important;
+	}
+	.moc-form-range-static{
+		display: inline-block;
+		width: 32px;
+		text-align: center;
+	}
 }
+
+
 // 查看详情 显示文字组件
 .project-form-text{
 	color: #666666;
@@ -62,13 +71,16 @@
  *
  */
 .project-form-inline{
-	.el-input{
+	.el-input,
+	.project-form-text,
+	.el-input-number {
 		width: 220px;
 	}
+	.moc-form-range,
 	.el-date-editor--daterange.el-input__inner,
 	.el-date-editor--datetimerange.el-input__inner,
 	.el-date-editor--monthrange.el-input__inner{
-		width: 370px;
+		width: 380px;
 	}
 	@for $i from 0 through 80 {
 		&.content-width-#{$i*10},
@@ -78,11 +90,12 @@
 			.el-input-number {
 				width: #{$i*10}px;
 			}
-			// .el-date-editor--daterange.el-input__inner,
-			// .el-date-editor--datetimerange.el-input__inner,
-			// .el-date-editor--monthrange.el-input__inner{
-			// 	width: #{$i*20-70}px;
-			// }
+			.moc-form-range,
+			.el-date-editor--daterange.el-input__inner,
+			.el-date-editor--datetimerange.el-input__inner,
+			.el-date-editor--monthrange.el-input__inner{
+				width: #{$i*20-60}px;
+			}
 		}
 	}
 }
