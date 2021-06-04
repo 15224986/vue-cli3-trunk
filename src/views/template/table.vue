@@ -16,11 +16,11 @@
                 <el-button @click="formDialogShow()" type="primary" plain>form 弹出框</el-button>
             </moc-section>
             <moc-section class="project-search">
-                <el-form :model="search" :inline="true" label-width="120px" label-suffix="：">
+                <el-form :model="search" :inline="true" label-width="90px" class="project-form-inline" label-suffix="：">
                     <el-form-item label="输入框">
                         <el-input v-model="search.user" clearable placeholder="审批人"></el-input>
                     </el-form-item>
-                    <el-form-item label="单选下拉">
+                    <el-form-item label="单选">
                         <el-select
                             v-model="search.region"
                             placeholder="活动区域"
@@ -37,7 +37,7 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="多选下拉">
+                    <el-form-item label="多选">
                         <moc-all-select
                             v-model="search.region2"
                             :selectOptions="options.region"
@@ -46,19 +46,19 @@
                         >
                         </moc-all-select>
                     </el-form-item>
-                    <el-form-item label="单选下拉值">
+                    <el-form-item label="单选值">
                        <p class="project-form-text">{{ search.region | selectFormatter(options.region) }}</p>
                     </el-form-item>
-                    <el-form-item label="多选下拉值">
+                    <el-form-item label="多选值">
                         <p class="project-form-text">{{ search.region2 | selectFormatter(options.region, 'array') }}</p>
                     </el-form-item>
-                    <el-form-item label="日期选择">
+                    <el-form-item label="日期">
                         <el-date-picker
                             v-model="search.date"
-                            placeholder="任意日期">
+                            placeholder="日期">
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="时间段选择">
+                    <el-form-item label="时间段">
                         <el-date-picker
                             v-model="search.checkTime"
                             type="datetimerange"
@@ -70,6 +70,13 @@
                             :picker-options="$global.datePickerOptions"
                         >
                         </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="年龄">
+                        <div class="moc-form-range">
+                            <el-input v-model="search.startAge" clearable placeholder="请输入"></el-input>
+                            <span class="moc-form-range-static">至</span>
+                            <el-input v-model="search.endAge" clearable placeholder="请输入"></el-input>
+                        </div>
                     </el-form-item>
                     <el-form-item class="project-search-btns">
                         <el-button @click="onSearch()" type="primary">查询</el-button>
@@ -201,6 +208,10 @@
                     date: '',
                     datetime: '',
                     checkTime: '',
+                    startAge: '',
+                    endAge: '',
+
+
                     arr:[1,2,3],
                     obj:{
                         a:1,
