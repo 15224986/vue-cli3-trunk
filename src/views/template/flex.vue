@@ -28,7 +28,7 @@
                     <el-button type="primary" plain>请假人员</el-button>
                 </moc-section>
                 <moc-section class="project-search">
-                    <el-form :model="search" :inline="true" label-width="90px" label-suffix="：" class="project-form-inline content-width-160">
+                    <el-form :model="search" :inline="true" label-width="90px" label-suffix="：" class="project-form-inline content-width-180">
                         <el-form-item label="姓名">
                             <el-input v-model="search.name" clearable placeholder="请输入"></el-input>
                         </el-form-item>
@@ -49,12 +49,14 @@
                                 </el-option>
                             </el-select>
                         </el-form-item>
-                        <el-form-item label="年龄" class="content-width-90">
-                            <el-input v-model="search.startAge" clearable placeholder="请输入"></el-input>
-                            <span class="project-form-label-static">至</span>
-                            <el-input v-model="search.endAge" clearable placeholder="请输入"></el-input>
+                        <el-form-item label="年龄">
+                            <div class="moc-form-range">
+                                <el-input v-model="search.startAge" clearable placeholder="请输入"></el-input>
+                                <span class="moc-form-range-static">至</span>
+                                <el-input v-model="search.endAge" clearable placeholder="请输入"></el-input>
+                            </div>
                         </el-form-item>
-                        <el-form-item label="出生时间">
+                        <el-form-item label="出生时间" class="content-width-200">
                             <el-date-picker
                                 v-model="search.date"
                                 type="datetimerange"
