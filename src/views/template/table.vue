@@ -119,42 +119,53 @@
                 >
                 </el-pagination>
             </moc-section>
-
-
-            <!-- 弹出框 -->
-            <el-dialog
-                title="建议这样使用，下面的例子destroy-on-close属性无法使用"
-                :visible.sync="tableDialogVisible"
-                width="88%"
-                top="50px"
-                append-to-body
-                v-mocDialogDrag
-                custom-class="moc-dialog-fixed"
-            >
-                <table-dialog :groupId="new Date().getTime()" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
-                <template #footer>
-                    <el-button @click="$refs.dialogTableTemplate.onSubmit()">取 消</el-button>
-                    <el-button @click="$refs.dialogTableTemplate.onCancel()" type="primary">确 定</el-button>
-                </template>
-            </el-dialog>
-            <el-dialog
-                title="自适应高度"
-                :visible.sync="tableDialogVisible2"
-                width="88%"
-                top="50px"
-                append-to-body
-                v-mocDialogDrag
-            >
-                <table-dialog-tp @after-callback="dialogCallback" ref="dialogTableTp"></table-dialog-tp>
-                <template #footer>
-                    <el-button @click="$refs.dialogTableTp.onSubmit()">取 消</el-button>
-                    <el-button @click="$refs.dialogTableTp.onCancel()" type="primary">确 定</el-button>
-                </template>
-            </el-dialog>
-
-            <form-dialog :visible="formDialogVisible" :groupId="new Date().getTime()" @after-callback="dialogCallback"></form-dialog>
-
         </moc-container>
+
+        <!-- 弹出框 -->
+        <el-dialog
+            title="自适应高度"
+            :visible.sync="tableDialogVisible2"
+            width="88%"
+            top="50px"
+            append-to-body
+            v-mocDialogDrag
+        >
+            <table-dialog-tp @after-callback="dialogCallback" ref="dialogTableTp"></table-dialog-tp>
+            <template #footer>
+                <el-button @click="$refs.dialogTableTp.onSubmit()">取 消</el-button>
+                <el-button @click="$refs.dialogTableTp.onCancel()" type="primary">确 定</el-button>
+            </template>
+        </el-dialog>
+        <el-dialog
+            title="建议这样使用，下面的例子destroy-on-close属性无法使用"
+            :visible.sync="tableDialogVisible"
+            width="88%"
+            top="50px"
+            append-to-body
+            v-mocDialogDrag
+            custom-class="moc-dialog-fixed"
+        >
+            <table-dialog :groupId="new Date().getTime()" @after-callback="dialogCallback" ref="dialogTableTemplate"></table-dialog>
+            <template #footer>
+                <el-button @click="$refs.dialogTableTemplate.onSubmit()">取 消</el-button>
+                <el-button @click="$refs.dialogTableTemplate.onCancel()" type="primary">确 定</el-button>
+            </template>
+        </el-dialog>
+        <el-dialog
+            title="系统提示"
+            :visible.sync="formDialogVisible"
+            width="960px"
+            fullscreen
+            append-to-body
+            v-mocDialogDrag
+            destroy-on-close
+        >
+            <form-dialog @after-callback="dialogCallback" ref="dialogform"></form-dialog>
+            <template #footer>
+                <el-button @click="$refs.dialogform.onSubmit()">取 消</el-button>
+                <el-button @click="$refs.dialogform.onCancel()" type="primary">确 定</el-button>
+            </template>
+        </el-dialog>
     </article>
 </template>
 <script>
