@@ -4,10 +4,10 @@
 		:content="content"
 		:effect="effect"
 		:placement="placement"
-		:popper-class="popperClass"
+		:popper-class="popperClass ? 'moc-tooltip-popper ' + popperClass : 'moc-tooltip-popper'"
 	>
-		<div class="moc-tooltip" @mouseover="onMouseOver(refName)">
-			<span :ref="refName" v-html="content||'-'"></span>
+		<div :ref="'parent-'+refName" @mouseover="onMouseOver(refName)" class="moc-tooltip">
+			<span :ref="refName" v-html="content"></span>
 		</div>
 	</el-tooltip>
 </template>
@@ -53,28 +53,22 @@
 		},
 		data() {
 			return {
-				isShowTooltip: true
+				isShowTooltip: false
 			}
 		},
 		methods: {
 			onMouseOver(str) {
-				let parentWidth = this.$refs[str].parentNode.offsetWidth;
-				let contentWidth = this.$refs[str].offsetWidth;
-				// 判断是否开启tooltip功能
-				if (contentWidth > parentWidth) {
-					this.isShowTooltip = false;
-				} else {
-					this.isShowTooltip = true;
-				}
+                if( this.$refs['parent-'+str] && this.$refs[str] ){
+                    let parentWidth = this.$refs['parent-'+str].offsetWidth;
+                    let contentWidth = this.$refs[str].offsetWidth;
+                    // 判断是否开启tooltip功能
+                    if (contentWidth > parentWidth) {
+                        this.isShowTooltip = false;
+                    } else {
+                        this.isShowTooltip = true;
+                    }
+                }
 			}
 		}
 	}
 </script>
-
-<style lang="scss">
-	.over-flow {
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
-</style>
