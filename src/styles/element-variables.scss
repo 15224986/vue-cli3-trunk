@@ -38,7 +38,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 .el-form{
 	padding-bottom: 1px;
 }
-
+.el-form-item__label {
+    padding: 0 6px 0 0;
+}
 
 // **************************** el-table **********************************
 .el-table {
