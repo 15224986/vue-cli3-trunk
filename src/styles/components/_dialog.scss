@@ -40,8 +40,17 @@
 
 
 
-
-
+/**
+ * 文字提示
+ */
+.moc-tooltip-popper{
+	max-width: calc(100% - 40px);
+}
+.moc-tooltip {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 
 
