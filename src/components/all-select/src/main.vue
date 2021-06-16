@@ -86,8 +86,8 @@ export default {
             deep: true,         // 该回调会在任何被侦听的对象的 property 改变时被调用，不论其被嵌套多深
             immediate: true,    // 该回调将会在侦听开始之后被立即调用
             handler: function(nData, oData){
-                if( nData.length > 0 && nData.length === this.chooseData.length && !this.chooseData.includes('all-selected-null') ){
-                    this.chooseData.unshift('all-selected-null');
+                if(this.chooseData && nData && nData.length > 0 && nData.length === this.chooseData.length && !this.chooseData.includes('all-selected-null') ){
+                    this.chooseData.unshift('all-selected-neusoft');
                 }
             }
         }
