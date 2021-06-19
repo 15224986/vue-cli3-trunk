@@ -35,7 +35,7 @@ export default {
             default: () => []
         },
         selectData: {
-            type: [Array, String, Number, Boolean],
+            type: Array,
             default: () => []
         },
         clearable:{
@@ -69,71 +69,92 @@ export default {
             //     { value: '5', label: '芒果' },
             //     { value: '6', label: '山竹' }
             // ],
-            oldChooseData: [],
-            chooseData: this.selectData
+            oldChooseData: Array.isArray(this.selectData) ? this.selectData : [],
+            chooseData: Array.isArray(this.selectData) ? this.selectData : []
         };
     },
     watch: {
-        selectData:function (nData, oData) {
-            this.chooseData = nData;
-            this.oldChooseData = nData.length > 0 ? nData : [];
-
-            if(  nData.length > 0 && nData.length === this.selectOptions.length && !nData.includes('all-selected-null') ){
-                this.chooseData.unshift('all-selected-null');
+        selectData:{
+            deep: true,         // 该回调会在任何被侦听的对象的 property 改变时被调用，不论其被嵌套多深
+            immediate: true,    // 该回调将会在侦听开始之后被立即调用
+            handler: function(nData){
+                if( Array.isArray(nData) && Array.isArray(this.selectOptions)  ){
+                    this.chooseData = nData;
+                    if(this.selectOptions.length > 0){
+                        this.addAllSelected(this.selectOptions)
+                    }
+                }
             }
         },
         selectOptions:{
-            deep: true,         // 该回调会在任何被侦听的对象的 property 改变时被调用，不论其被嵌套多深
-            immediate: true,    // 该回调将会在侦听开始之后被立即调用
-            handler: function(nData, oData){
-                if(this.chooseData && nData && nData.length > 0 && nData.length === this.chooseData.length && !this.chooseData.includes('all-selected-null') ){
-                    this.chooseData.unshift('all-selected-neusoft');
+            deep: true,
+            immediate: true,
+            handler: function(nData){
+                if( Array.isArray(nData) && nData.length > 0 && Array.isArray(this.chooseData) ){
+                    this.addAllSelected(nData)
                 }
             }
         }
     },
     methods: {
-		selectAll (val) {
-            // 保留所有值
+        /**
+         * 初始化事件
+         */
+        addAllSelected(options){
+            let type = true;
+            options.forEach(element=>{
+                if(!element.disabled && this.chooseData.includes(element.value) === false ){
+                    type = false
+                }
+            })
+            if( type && !this.chooseData.includes('all-selected-null') ){
+                this.$nextTick(function(){
+                    this.chooseData.unshift('all-selected-null');
+                    this.oldChooseData = this.chooseData;
+                })
+            }
+        },
+        /**
+         * 点击事件
+         */
+		selectAll() {
+            /**
+             * 保留所有值
+             */
             const allValues = [];
             this.selectOptions.forEach(item => {
                 if( !item.disabled ){
                     allValues.push( item.value );
                 }
             });
-            allValues.unshift('all-selected-null');
-			// 用来储存上一次选择的值，可进行对比
-			const oldVal = this.oldChooseData.length > 0 ? this.oldChooseData : [];
 
-            // 若选择全部
-            if ( val.includes('all-selected-null') ) {
-                // 判断当前列表中除了全选之外是否还有其他选项
-                if( allValues.length>1 ){
-                    this.chooseData = allValues;
+            /**
+             * 点击全选的时候
+             * 取消全部选中， 上次有， 当前没有， 表示取消全选
+             * 点击非全部选中，上次没有， 当前有， 表示全选
+             */
+			if (this.oldChooseData.includes('all-selected-null') && !this.chooseData.includes('all-selected-null')) {
+                this.chooseData = [];
+			}
+			if ( !this.oldChooseData.includes('all-selected-null') && this.chooseData.includes('all-selected-null')) {
+                this.chooseData = allValues;
+                this.chooseData.unshift('all-selected-null');
+			}
+
+            /**
+             * 点击的不是全选时
+             * 全选未选，但是其他选项都全部选上了，则添加全选
+             * 全选以选，但是其他选项都未全部选上了，则删除全选
+             */
+            if (!this.oldChooseData.includes('all-selected-null') && !this.chooseData.includes('all-selected-null') || this.oldChooseData.includes('all-selected-null') && this.chooseData.includes('all-selected-null') ) {
+                let type = allValues.every( value=> this.chooseData.includes(value))
+                if ( type ) {
+                    this.chooseData.unshift('all-selected-null');
                 }else{
-                    this.chooseData = [];
+                    const idx = this.chooseData.indexOf('all-selected-null');
+                    if( idx > -1 ) this.chooseData.splice(idx, 1);
                 }
             }
-
-			// 取消全部选中， 上次有， 当前没有， 表示取消全选
-			if (oldVal.includes('all-selected-null') && !val.includes('all-selected-null')) {
-				this.chooseData = [];
-			}
-
-			// 点击非全部选中，需要排除全部选中 以及 当前点击的选项
-			// 新老数据都有全部选中
-			if (oldVal.includes('all-selected-null') && val.includes('all-selected-null')) {
-				const index = val.indexOf('all-selected-null');
-				val.splice(index, 1); // 排除全选选项
-				this.chooseData = val;
-			}
-
-			// 全选未选，但是其他选项都全部选上了，则全选选上
-			if (!oldVal.includes('all-selected-null') && !val.includes('all-selected-null')) {
-				if ( allValues.length > 1 && val.length === allValues.length - 1 ) {
-					this.chooseData = ['all-selected-null'].concat(val);
-				}
-			}
 
 			// 储存当前选择的最后结果 作为下次的老数据
 			this.oldChooseData = this.chooseData;
