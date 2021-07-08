@@ -29,12 +29,11 @@ export default {
         event: 'change'
     },
 	props: {
-        selectOptions: {
-            type: Array,
-            // default: function () { return [] }
+        selectData: {
+            type: [Array, String, Number],
             default: () => []
         },
-        selectData: {
+        selectOptions: {
             type: Array,
             default: () => []
         },
@@ -52,7 +51,7 @@ export default {
         },
         collapseTags:{
             type: Boolean,
-            default: false
+            default: true
         },
         size:{
             type: String,
@@ -69,8 +68,8 @@ export default {
             //     { value: '5', label: '芒果' },
             //     { value: '6', label: '山竹' }
             // ],
-            oldChooseData: Array.isArray(this.selectData) ? this.selectData : [],
-            chooseData: Array.isArray(this.selectData) ? this.selectData : []
+            oldChooseData: [],
+            chooseData: []
         };
     },
     watch: {
