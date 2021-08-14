@@ -40,7 +40,11 @@ Vue.prototype.$axios = instance;
  * 完整引入 引入ui模板 element-ui
  */
 import ElementUI from 'element-ui';
-Vue.use(ElementUI, {size: 'small', zIndex: 900});
+let ElementUIsize = 'mini'
+if( document.body.clientWidth >= 1610 ){
+    ElementUIsize = 'small'
+}
+Vue.use(ElementUI, { size: ElementUIsize, zIndex: 900 });
 
 
 /**
